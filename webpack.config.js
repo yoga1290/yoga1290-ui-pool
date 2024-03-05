@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 const ENTRY_POINTS = {
-        'react-components': path.resolve(__dirname, 'react')
+        'react-app': path.resolve(__dirname, 'react')
 };
 
 const outputPath = path.resolve(__dirname, 'docs');
@@ -23,7 +23,7 @@ module.exports = {
   entry: ENTRY_POINTS,
 
   output: {
-    filename: '[name]-bundle.js',
+    filename: '[name].js',
     path: outputPath
   },
 

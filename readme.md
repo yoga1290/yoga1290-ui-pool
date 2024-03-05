@@ -5,7 +5,21 @@ Currently it only has React.js components
 
 # How to use:
 
-+ Add the NPM dependecy to the app: `npm i -D git+https://github.com/yoga1290/yoga1290-ui-pool.git`
++ Add the NPM dependecy to the app: `npm i -D github:yoga1290/yoga1290-ui-pool#v1.0.0`
++ Make sure, Webpack loader compiles it:
+```javascript
+module.exports = {
+    module: {
+        rules: [{
+        //...
+            test: /\.(ts|js)x?$/,
+            loader: 'babel-loader',
+            exclude: /node_modules\/(?!yoga1290-ui-pool)/,
+        //...
+        }]
+    }
+}
+```
 + Use the needed compoenent:
 ```typescript
 import Card, {CardProps} from 'yoga1290-ui-pool/react/card'
@@ -17,7 +31,7 @@ expose default ({title, text, opMaterialIcon}: CardProps) => (<>
         click={MyMouseEventHandler(mouseEvent)} />
 </>);
 ```
-+ [View demo on github page](https://github.io/yoga1290/yoga1290-ui-pool)
++ [View demo on github page](https://yoga1290.github.io/yoga1290-ui-pool/)
 
 # Dependencies
 

@@ -17,8 +17,8 @@ export type ItemProp = {
 };
 
 export default ({ brand, items }: HeaderProp) => (<header>
-        <nav className="navbar navbar-dark bg-dark  sticky-top">
-            <div className="container px-0 mx-0 col-12 d-flex justify-content-between">
+        <nav className="navbar navbar-dark bg-dark  sticky-top row my-0">
+            <div className="row my-0 col-12 d-flex justify-content-between">
 
                 <a href="#"
                     className="navbar-brand text-center col-sm-12 col-md-3">

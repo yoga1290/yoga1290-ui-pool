@@ -11,7 +11,7 @@ import CardFeatured /*, {CardProps}*/ from "./card-featured";
 import './App.scss';
 
 let headerProps: HeaderProp = {
-    brand: 'Sample Header',
+    brand: 'yoga1290-ui-pool',
     items: [{
         title: 'Item 1',
         link: '/#item-1',
@@ -84,6 +84,35 @@ export default () => (
                                 element={<div/>}
                             />
                         </Routes>
+
+                        <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'>Card Featured</h1>                            
+                            <div className='col-12'>
+                                <CardFeatured 
+                                    title={`What's this?`}
+                                    text={<>This GitHub page/repo acts as NPM dependency to provide a pool of UI components that might possibily be reusable and resolve boilerplate.
+                                        Currently it only has React.js components
+                                    </>}
+                                    buttonText='Jump to repo'
+                                    click={ ()=>(window.open('https://github.com/yoga1290/yoga1290-ui-pool#readme', '_blank'))}
+                                    icon='open_in_new' />
+                            </div>
+                            <div className='col-12 col-sm-6 col-md-4'>
+                                <CardFeatured 
+                                    title='Card-featured'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_new' />
+                            </div>
+                            <div className='col-12 col-sm-6 col-md-6'>
+                                <Card 
+                                    title='Code'
+                                    subtitle='yoga1290-ui-pool/react/card-featured'
+                                    text= {<pre className='user-select-all'>{SAMPLE_CARD_FEATURED}</pre>}
+                                    click={copyToClipboard(SAMPLE_CARD_FEATURED)}
+                                    icon='content_copy' />
+                            </div>
+                        </div>
 
                         <div className='row'>
                             <h1 className='col-12 fs-1 bg-dark'>Header</h1>
@@ -165,31 +194,7 @@ export default () => (
 
 
 
-                        <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Card Featured</h1>                            
-                            <div className='col-12'>
-                                <CardFeatured 
-                                    title='Card-featured'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    icon='open_in_browser' />
-                            </div>
-                            <div className='col-12 col-sm-6 col-md-4'>
-                                <CardFeatured 
-                                    title='Card-featured'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    icon='open_in_browser' />
-                            </div>
-                            <div className='col-12 col-sm-6 col-md-6'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/card-featured'
-                                    text= {<pre className='user-select-all'>{SAMPLE_CARD_FEATURED}</pre>}
-                                    click={copyToClipboard(SAMPLE_CARD_FEATURED)}
-                                    icon='content_copy' />
-                            </div>
-                        </div>
+                        
                         <hr/>
                         
 
