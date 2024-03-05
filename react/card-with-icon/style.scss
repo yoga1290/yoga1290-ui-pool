@@ -1,0 +1,14 @@
+.card-with-icon {
+    .card {
+        color: white;
+        border: 0px;
+    }
+    .card:focus {
+        border: 1px solid;
+    }
+    .card:hover {
+        border: 1px solid;
+    }
+
+    cursor: pointer;
+}

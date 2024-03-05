@@ -1,0 +1,19 @@
+.navbar {
+    z-index: 2;
+}
+.nav-btn:focus {
+    border: white;
+}
+
+.nav-btn {
+    color: rgba(255,255,255,.5);
+}
+.nav-btn:hover, .active .nav-btn {
+    color: white;
+}
+
+.nav-item {
+    .nav-link.active {
+        border-bottom: .3rem solid rgba(255,255,255,.75);
+    }
+}

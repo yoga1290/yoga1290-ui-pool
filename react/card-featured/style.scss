@@ -1,0 +1,24 @@
+.card-featured {
+    .card {
+        color: white;
+        border: 0px;
+        background-color: #fff;
+
+    }
+    .card:focus, .card:hover {
+        border: 1px solid;
+    }
+
+    .card-featured__body {
+        background-position: center top;
+    }
+
+    .card-featured__inner-card {
+        border: 1px solid;
+        background-color: rgb(33, 37, 41, 0.3);
+
+        bottom: 0px;
+        margin-top: 200px;
+    }
+    
+}
