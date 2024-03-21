@@ -4,7 +4,7 @@ git pull origin --tags;
 
 DATE=$(date +%y.%m)
 TAG_COUNT=$(git tag -l | wc -l)
-TAG="${DATE}.${TAG_COUNT}"
+TAG="v${DATE}.${TAG_COUNT}"
 echo "NEW TAG: $TAG"
 
 git tag $TAG;
