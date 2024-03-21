@@ -2,9 +2,9 @@ REMOTE_ORIGIN="https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${G
 git remote set-url origin $REMOTE_ORIGIN;
 git pull origin --tags;
 
-DATE=$(date +%y.%m)
+YYMM=$(date +%y.%m)
 TAG_COUNT=$(git tag -l | wc -l)
-TAG="${DATE}.${TAG_COUNT}"
+TAG="v${YYMM}.${TAG_COUNT}"
 echo "NEW TAG: $TAG"
 
 git tag $TAG;
