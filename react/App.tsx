@@ -3,9 +3,11 @@ import { HashRouter, Route, Routes } from 'react-router-dom'
 
 import Header, {HeaderProp} from "./header";
 import Card /*, {CardProps}*/ from "./card";
-import CardWithMenu /*, {CardProps}*/ from "./card-with-menu";
+import CardWithButtons /*, {CardProps}*/ from "./card-with-buttons";
+
 import CardWithIcon /*, {CardProps}*/ from "./card-with-icon";
 import CardFeatured /*, {CardProps}*/ from "./card-featured";
+import CardFeaturedWithButtons /*, {CardProps}*/ from "./card-featured-with-buttons";
 
 
 import './App.scss';
@@ -33,34 +35,19 @@ let headerProps: HeaderProp = {
 
 const copyToClipboard = (copyText:string) => ( ()=>(navigator.clipboard.writeText(copyText)) );
 
-const SAMPLE_CARD = 
-    `<Card 
-    title='Card-with-button'
-    subtitle='Subtitle'
-    text='Text'
-    icon='open_in_browser'
-    click={Function} />`;
 const SAMPLE_CARD_WITH_ICON = 
     `<CardWithIcon 
     title='Card w/ icon'
     subtitle='[Subtitle]'
     text='[Text]'
     icon='open_in_browser' />`;
-const SAMPLE_CARD_WITH_MENU = 
-    `<CardWithMenu 
+const SAMPLE_CARD_WITH_BUTTONS = 
+    `<CardWithButtons
         title='Card-with-icon'
         subtitle='Subtitle'
         text='Text'
-        icon='open_in_browser' />`;
+        buttons = {[ {title, icon, click} ]} />`;
 
-const SAMPLE_HEADER = 
-    `<Header
-        brand= 'Sample Header'
-        items={[{
-            title: 'Item 1',
-            link: '/#item-1',
-            icon: 'play_circle'
-        }]} />`;
 const SAMPLE_CARD_FEATURED =
     `<CardFeatured 
         title='Card-featured'
@@ -86,7 +73,15 @@ export default () => (
                         </Routes>
 
                         <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Card Featured</h1>                            
+                            <h1 className='col-12 fs-1 bg-dark'>Header</h1>
+                            <div className='col-12'>
+                                <Header  brand={headerProps.brand}
+                                    items={headerProps.items} />
+                            </div>
+                        </div>
+
+                        <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'> &#60; CardFeatured &#62; </h1>                            
                             <div className='col-12'>
                                 <CardFeatured 
                                     title={`What's this?`}
@@ -115,38 +110,114 @@ export default () => (
                         </div>
 
                         <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Header</h1>
-                            <div className='col-12'>
-                                <Header  brand={headerProps.brand}
-                                    items={headerProps.items} />
+                            <h1 className='col-12 fs-1 bg-dark'>Card Featured With Buttons </h1>
+                            <div className='col-12 col-sm-6 col-md-4 align-self-stretch d-flex'>
+                                <CardFeaturedWithButtons 
+                                    title='Card-with-icon'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser' />
                             </div>
-                            <div className='col-12'>
+                            <div className='col-12 col-sm-6 col-md-4'>
+                                <CardFeaturedWithButtons 
+                                    title='Card-with-icon'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser'
+                                    buttons={[{
+                                        text:'button1',
+                                        icon:'share'
+                                    }]} />
+                            </div>
+                            <div className='col-12 col-sm-6 col-md-4'>
+                                <CardFeaturedWithButtons 
+                                    title='Card-with-icon'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser'
+                                    buttons={[{
+                                        text:'button1',
+                                        icon:'share'
+                                    }, {
+                                        text:'button2',
+                                        icon:'share'
+                                    }]} />
+                            </div>
+                            <div className='col-12 col-sm-6 col-md-4'>
+                                <CardFeaturedWithButtons 
+                                    title='Card-with-icon'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser'
+                                    buttons={[{
+                                        text:'button1',
+                                        icon:'share'
+                                    }, {
+                                        text:'button2',
+                                        icon:'share'
+                                    }, , {
+                                        text:'button3',
+                                        icon:'share'
+                                    }]} />
+                            </div>
+                            <div className='col-12 col-sm-6 col-md-6'>
                                 <Card 
                                     title='Code'
-                                    subtitle='yoga1290-ui-pool/react/card'
-                                    text= {<pre className='user-select-all'>{SAMPLE_HEADER}</pre>}
-                                    click={copyToClipboard(SAMPLE_HEADER)}
+                                    subtitle='yoga1290-ui-pool/react/card-with-buttons'
+                                    text= {<pre className='user-select-all'>{SAMPLE_CARD_WITH_BUTTONS}</pre>}
+                                    click={copyToClipboard(SAMPLE_CARD_WITH_BUTTONS)}
                                     icon='content_copy' />
                             </div>
                         </div>
 
 
                         <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Card with button</h1>
+                            <h1 className='col-12 fs-1 bg-dark'>Card with buttons</h1>
+
+                            <div className='col-12 col-sm-6 col-md-4 align-self-stretch d-flex'>
+                                <CardWithButtons 
+                                    title='Card-with-icon'
+                                    subtitle='Subtitle'
+                                    text='Text' />
+                            </div>
                             <div className='col-12 col-sm-6 col-md-4'>
-                                <Card 
-                                    title='Card & button'
+                                <CardWithButtons 
+                                    title='Card-with-icon'
                                     subtitle='Subtitle'
                                     text='Text'
-                                    icon='open_in_browser' />
+                                    buttons={[{
+                                        text:'button1',
+                                        icon:'share'
+                                    }]} />
                             </div>
-                            <div className='col-12 col-sm-6 col-md-6'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/card'
-                                    text= {<pre className='user-select-all'>{SAMPLE_CARD}</pre>}
-                                    click={copyToClipboard(SAMPLE_CARD)}
-                                    icon='content_copy' />
+                            <div className='col-12 col-sm-6 col-md-4'>
+                                <CardWithButtons 
+                                    title='Card-with-icon'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    buttons={[{
+                                        text:'button1',
+                                        icon:'share'
+                                    }, {
+                                        text:'button2',
+                                        icon:'share'
+                                    }]} />
+                            </div>
+                            <div className='col-12 col-sm-6 col-md-4'>
+                                <CardWithButtons 
+                                    title='Card-with-icon'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    buttons={[{
+                                        text:'button1',
+                                        icon:'share'
+                                    }, {
+                                        text:'button2',
+                                        icon:'share'
+                                    }, , {
+                                        text:'button3',
+                                        icon:'share'
+                                    }]} />
                             </div>
                         </div>
 
@@ -169,31 +240,6 @@ export default () => (
                                     icon='content_copy' />
                             </div>
                         </div>
-
-
-
-                        <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Card with Menu</h1>
-                            <div className='col-12 col-sm-6 col-md-4'>
-                                <CardWithMenu 
-                                    title='Card-with-icon'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    icon='open_in_browser' />
-                            </div>
-                            <div className='col-12 col-sm-6 col-md-6'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/card-with-menu'
-                                    text= {<pre className='user-select-all'>{SAMPLE_CARD_WITH_MENU}</pre>}
-                                    click={copyToClipboard(SAMPLE_CARD_WITH_MENU)}
-                                    icon='content_copy' />
-                            </div>
-                        </div>
-
-
-
-
                         
                         <hr/>
                         

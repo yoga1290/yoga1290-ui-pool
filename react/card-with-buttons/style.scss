@@ -1,0 +1,22 @@
+.card-with-buttons {
+    .card {
+        color: white;
+        border: 0px;
+    }
+    .card:focus {
+        border: 1px solid;
+    }
+    .card:hover {
+        border: 1px solid;
+    }
+
+    .card-featured-upper__menu-button + .card-featured-upper__menu {
+        display: none;
+        
+    }
+    .card-featured-upper__menu-button:hover + .card-featured-upper__menu,
+    .card-featured-upper__menu-button + .card-featured-upper__menu:hover,
+    .card-featured-upper__menu-button:hover + .card-featured-upper__menu:hover {
+        display: block;
+    }
+}
