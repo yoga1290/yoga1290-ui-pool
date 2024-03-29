@@ -11,7 +11,7 @@ export type ButtonListProps = {
 };
 
 const firstTwo = (_o:any, i:number) => (i < 2);
-const selectAfterThird = (_o:any, i: number) => (i >= 2);
+const selectAfterTwo = (_o:any, i: number) => (i >= 2);
 
 export default ({ buttons }: ButtonListProps) => (
 
@@ -22,15 +22,15 @@ export default ({ buttons }: ButtonListProps) => (
         <button type="button"
             tabIndex={0}
             className="btn border-0 btn-outline-light btn-sm card-featured-upper__menu-button"
-            onClick={(()=>{})}> menu
+            onClick={(()=>{})}>
             <span className="material-symbols-outlined align-middle">menu</span>        
         </button>
         <div className='position-absolute card-featured-upper__menu'>
-            <div className='card bg-dark border-light'>
-                <div className='position-relative card-body  row'>
-                    {buttons.filter(selectAfterThird).map( ({text, icon, click}) => (
+            <div className='card bg-dark border-light' >
+                <div className='position-relative card-body row'>
+                    {buttons.filter(selectAfterTwo).map( ({text, icon, click}, idx) => (
                         <button type="button"
-                            tabIndex={0}
+                            key={idx+2}
                             className="btn border-0 btn-outline-light btn-sm"
                             onClick={!!click? click: (()=>{})}>
 
@@ -49,9 +49,10 @@ export default ({ buttons }: ButtonListProps) => (
     </>)}
     
 
-    {buttons.filter(firstTwo).map( ({text, icon, click}) => (
+    {buttons.filter(firstTwo).map( ({text, icon, click}, idx) => (
         <button type="button"
             tabIndex={0}
+            key={idx}
             className="btn border-0 btn-outline-light btn-sm"
             onClick={!!click? click: (()=>{})}>
 
