@@ -11,12 +11,14 @@
     }
 
     .card-featured-upper__menu-button + .card-featured-upper__menu {
-        display: none;
-        
+        visibility: hidden;
     }
     .card-featured-upper__menu-button:hover + .card-featured-upper__menu,
     .card-featured-upper__menu-button + .card-featured-upper__menu:hover,
-    .card-featured-upper__menu-button:hover + .card-featured-upper__menu:hover {
-        display: block;
+    .card-featured-upper__menu-button:hover + .card-featured-upper__menu:hover,
+    .card-featured-upper__menu-button:focus + .card-featured-upper__menu,
+    .card-featured-upper__menu-button + .card-featured-upper__menu:focus,
+    .card-featured-upper__menu-button:focus + .card-featured-upper__menu:focus {
+        visibility: visible;
     }
 }
