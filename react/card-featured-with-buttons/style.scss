@@ -1,4 +1,4 @@
-.card-featured-upper {
+.card-featured-with-buttons {
     .card {
         color: white;
         border: 0px;
@@ -27,7 +27,11 @@
     }
     .card-featured-upper__menu-button:hover + .card-featured-upper__menu,
     .card-featured-upper__menu-button + .card-featured-upper__menu:hover,
-    .card-featured-upper__menu-button:hover + .card-featured-upper__menu:hover {
+    .card-featured-upper__menu-button:hover + .card-featured-upper__menu:hover,
+    .card-featured-upper__menu-button:focus + .card-featured-upper__menu,
+    .card-featured-upper__menu-button + .card-featured-upper__menu:focus,
+    .card-featured-upper__menu-button:focus + .card-featured-upper__menu:focus
+    {
         display: block;
     }
     
