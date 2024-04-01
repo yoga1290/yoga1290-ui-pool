@@ -22,7 +22,7 @@ export default ({ title, text, subtitle, buttons }: CardProps) => (
                 <p className="card-text">{text}</p>
 
                 {!!buttons && (
-                    <div className="row float-end">
+                    <div className="buttons-list row float-end">
                         <ButtonList 
                             buttons={buttons}
                         />

@@ -15,7 +15,7 @@ const findOthers = (_o:any, i: number) => (i > 0);
 
 export default ({ buttons }: ButtonListProps) => (
 
-<div className=' col-12'>
+<div className='col-12'>
     
     
     {(buttons.length > 1) && (<>

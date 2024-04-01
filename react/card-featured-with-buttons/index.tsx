@@ -38,7 +38,7 @@ export default ({ title, text, subtitle, backgroundImageUrl, buttons }: CardProp
 
 
                 {!!buttons && (
-                    <div className="row float-end">
+                    <div className="row float-end buttons-list">
                         <ButtonList 
                             buttons={buttons}
                         />

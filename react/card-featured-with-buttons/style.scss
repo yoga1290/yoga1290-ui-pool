@@ -1,9 +1,15 @@
 .card-featured-with-buttons {
+
+    .buttons-list {
+        right: 0px;
+        bottom: 10px;
+        position: absolute;
+    }
+
     .card {
         color: white;
         border: 0px;
         background-color: #fff;
-
     }
     .card:focus, .card:hover {
         border: 1px solid;
@@ -22,8 +28,7 @@
     }
 
     .card-featured-upper__menu-button + .card-featured-upper__menu {
-        display: none;
-        
+        visibility: hidden;
     }
     .card-featured-upper__menu-button:hover + .card-featured-upper__menu,
     .card-featured-upper__menu-button + .card-featured-upper__menu:hover,
@@ -32,7 +37,7 @@
     .card-featured-upper__menu-button + .card-featured-upper__menu:focus,
     .card-featured-upper__menu-button:focus + .card-featured-upper__menu:focus
     {
-        display: block;
+        visibility: visible;
     }
     
 }
