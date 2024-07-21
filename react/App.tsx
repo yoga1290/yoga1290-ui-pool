@@ -8,6 +8,7 @@ import CardWithButtons /*, {CardProps}*/ from "./card-with-buttons";
 import CardWithIcon /*, {CardProps}*/ from "./card-with-icon";
 import CardFeatured /*, {CardProps}*/ from "./card-featured";
 import CardFeaturedWithButtons /*, {CardProps}*/ from "./card-featured-with-buttons";
+import CardFeaturedWithButtonsCarousal from './card-featured-with-buttons-carousal';
 
 
 import './App.scss';
@@ -55,7 +56,38 @@ const SAMPLE_CARD_FEATURED =
         text='Text'
         icon='open_in_browser' />`;
 
-
+const cardsFeaturedWithButtonsCarousal = [
+    {
+        title: `Card#1`,
+        text: <>This GitHub page/repo acts as NPM dependency to provide a pool of UI components that might possibily be reusable and resolve boilerplate.
+                Currently it only has React.js components
+            </>,
+        buttons:[{
+            text: 'Read more',
+            click: ()=>(window.open('https://github.com/yoga1290/yoga1290-ui-pool#readme', '_blank')),
+            icon:'open_in_new'
+        }],
+    }, {
+        title: `Card#2`,
+        text: <>This GitHub page/repo acts as NPM dependency to provide a pool of UI components that might possibily be reusable and resolve boilerplate.
+                Currently it only has React.js components
+            </>,
+        buttons:[{
+            text: 'Read more',
+            click: ()=>(window.open('https://github.com/yoga1290/yoga1290-ui-pool#readme', '_blank')),
+            icon:'open_in_new'
+        }],
+    }, {
+        title: `Card#3`,
+        text: <>This GitHub page/repo acts as NPM dependency to provide a pool of UI components that might possibily be reusable and resolve boilerplate.
+                Currently it only has React.js components
+            </>,
+        buttons:[{
+            text: 'Read more',
+            click: ()=>(window.open('https://github.com/yoga1290/yoga1290-ui-pool#readme', '_blank')),
+            icon:'open_in_new'
+        }],
+    },];
 export default () => (
   <div>            
             <HashRouter>
@@ -73,7 +105,7 @@ export default () => (
                         </Routes>
 
                         <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Header</h1>
+                            <h1 className='col-12 fs-1 bg-dark'> &#60; Header &#62; </h1>
                             <div className='col-12'>
                                 <Header  brand={headerProps.brand}
                                     items={headerProps.items} />
@@ -110,17 +142,37 @@ export default () => (
                         </div>
 
                         <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'> &#60; CardFeaturedWithButtonsCarousal &#62; </h1>                            
+                            <div className='col-12'>
+                                <CardFeaturedWithButtonsCarousal
+                                    delay={7}
+                                    cards={cardsFeaturedWithButtonsCarousal} />
+                            </div>
+                            <div className='col-md-8 col-sm-12 col-12'>
+                                <CardFeaturedWithButtonsCarousal
+                                    delay={4}
+                                    cards={cardsFeaturedWithButtonsCarousal} />
+                            </div>
+                            <div className='col-md-4 col-sm-12 col-12'>
+                                <CardFeaturedWithButtonsCarousal
+                                    delay={5}
+                                    cards={cardsFeaturedWithButtonsCarousal} />
+                            </div>
+                            
+                        </div>
+
+                        <div className='row'>
                             <h1 className='col-12 fs-1 bg-dark'>Card Featured With Buttons </h1>
                             <div className='col-12 col-sm-6 col-md-4 align-self-stretch d-flex'>
                                 <CardFeaturedWithButtons 
-                                    title='Card-with-icon'
+                                    title='Card-featured-with-buttons'
                                     subtitle='Subtitle'
                                     text='Text'
                                     icon='open_in_browser' />
                             </div>
                             <div className='col-12 col-sm-6 col-md-4'>
                                 <CardFeaturedWithButtons 
-                                    title='Card-with-icon'
+                                    title='Card-featured-with-buttons'
                                     subtitle='Subtitle'
                                     text='Text'
                                     icon='open_in_browser'
@@ -131,21 +183,7 @@ export default () => (
                             </div>
                             <div className='col-12 col-sm-6 col-md-4'>
                                 <CardFeaturedWithButtons 
-                                    title='Card-with-icon'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    icon='open_in_browser'
-                                    buttons={[{
-                                        text:'button1',
-                                        icon:'share'
-                                    }, {
-                                        text:'button2',
-                                        icon:'share'
-                                    }]} />
-                            </div>
-                            <div className='col-12 col-sm-6 col-md-4'>
-                                <CardFeaturedWithButtons 
-                                    title='Card-with-icon'
+                                    title='Card-featured-with-buttons'
                                     subtitle='Subtitle'
                                     text='Text'
                                     icon='open_in_browser'
@@ -176,13 +214,13 @@ export default () => (
 
                             <div className='col-12 col-sm-6 col-md-4 align-self-stretch d-flex'>
                                 <CardWithButtons 
-                                    title='Card-with-icon'
+                                    title='Card-with-buttons'
                                     subtitle='Subtitle'
                                     text='Text' />
                             </div>
                             <div className='col-12 col-sm-6 col-md-4'>
                                 <CardWithButtons 
-                                    title='Card-with-icon'
+                                    title='Card-with-buttons'
                                     subtitle='Subtitle'
                                     text='Text'
                                     buttons={[{
@@ -192,20 +230,7 @@ export default () => (
                             </div>
                             <div className='col-12 col-sm-6 col-md-4'>
                                 <CardWithButtons 
-                                    title='Card-with-icon'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    buttons={[{
-                                        text:'button1',
-                                        icon:'share'
-                                    }, {
-                                        text:'button2',
-                                        icon:'share'
-                                    }]} />
-                            </div>
-                            <div className='col-12 col-sm-6 col-md-4'>
-                                <CardWithButtons 
-                                    title='Card-with-icon'
+                                    title='Card-with-buttons'
                                     subtitle='Subtitle'
                                     text='Text'
                                     buttons={[{
@@ -234,7 +259,7 @@ export default () => (
                             <div className='col-12 col-sm-6 col-md-6'>
                                 <Card 
                                     title='Code'
-                                    subtitle='yoga1290-ui-pool/react/card-with-icon'
+                                    subtitle='yoga1290-ui-pool/react/card-featured-with-buttons'
                                     text= {<pre className='user-select-all'>{SAMPLE_CARD_WITH_ICON}</pre>}
                                     click={copyToClipboard(SAMPLE_CARD_WITH_ICON)}
                                     icon='content_copy' />
