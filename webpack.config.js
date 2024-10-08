@@ -57,7 +57,13 @@ module.exports = {
       use: [
         "style-loader", // creates style nodes from JS strings
         "css-loader", // translates CSS into CommonJS
-        "sass-loader" // compiles Sass to CSS, using Node Sass by default
+        {
+          loader: "sass-loader",
+          options: {
+            // see https://webpack.js.org/loaders/sass-loader/#api
+            api: "modern",
+          },
+        },
       ]
     }, {
       test: /\.(png|jpg|gif)$/,

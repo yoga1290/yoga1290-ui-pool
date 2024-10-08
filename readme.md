@@ -5,7 +5,7 @@ Currently it only has React.js components
 
 # How to use:
 
-+ Add the NPM dependecy to the app: `npm i -D github:yoga1290/yoga1290-ui-pool#v24.03.0`
++ Add the NPM dependecy to the app: `npm i -D github:yoga1290/yoga1290-ui-pool#v24.10.9`
 + Make sure, Webpack loader compiles it:
 ```javascript
 module.exports = {

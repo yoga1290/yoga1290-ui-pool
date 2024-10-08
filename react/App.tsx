@@ -9,9 +9,10 @@ import CardWithIcon /*, {CardProps}*/ from "./card-with-icon";
 import CardFeatured /*, {CardProps}*/ from "./card-featured";
 import CardFeaturedWithButtons /*, {CardProps}*/ from "./card-featured-with-buttons";
 import CardFeaturedWithButtonsCarousal from './card-featured-with-buttons-carousal';
-
+import SearchAndSelectList from './search-and-select-list'; 
 
 import './App.scss';
+import PagingAndSortingResult from './search-and-select-list/model/PagingAndSortingResult';
 
 let headerProps: HeaderProp = {
     brand: 'yoga1290-ui-pool',
@@ -55,6 +56,23 @@ const SAMPLE_CARD_FEATURED =
         subtitle='Subtitle'
         text='Text'
         icon='open_in_browser' />`;
+
+const SAMPLE_SEARCH_AND_SELECT_LIST = `<SearchAndSelectList 
+                    title='Search some entities'
+                    defaultItemIcon='queue_music'
+                    allowNew={false}
+                    pathToItemTitle='someDisplayKey'
+                    onSelectedItemsChange={(selectedItems:any[]) => (console.log(selectedItems))}
+                    onItemsQuery={(_text: string, _pageNumber: number) =>(
+                                Promise.resolve({
+                                    content: [{
+                                        someDisplayKey: \`item \${!!text? \`for \${text}\`:''}\`,
+                                        somekey: 'somevalue'
+                                    }],
+                                    first: false,
+                                    last: false,
+                                    size: 2
+                                } as PagingAndSortingResult<any>))}/>`;
 
 const cardsFeaturedWithButtonsCarousal = [
     {
@@ -264,6 +282,50 @@ export default () => (
                                     click={copyToClipboard(SAMPLE_CARD_WITH_ICON)}
                                     icon='content_copy' />
                             </div>
+                        </div>
+                        
+                        <hr/>
+
+
+                        <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'>Search-And-Select-List</h1>
+
+                            <div className='col-12'>
+                                <SearchAndSelectList 
+                                        title='Search some entities'
+                                        defaultItemIcon='queue_music'
+                                        allowNew={false}
+                                        pathToItemTitle='someDisplayKey'
+                                        onSelectedItemsChange={(selectedItems:any[]) => (console.log(selectedItems))}
+                                        onItemsQuery={(text: string, _pageNumber: number) =>(
+                                                    Promise.resolve({
+                                                        content: [{
+                                                            someDisplayKey: `item ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue'
+                                                        }, {
+                                                            someDisplayKey: `item#2 ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue2'
+                                                        }, {
+                                                            someDisplayKey: `item#3 ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue3'
+                                                        }],
+                                                        first: false,
+                                                        last: false,
+                                                        size: 2
+                                                    } as PagingAndSortingResult<any>))}/>
+                            </div>
+
+                            <div className='col-12'>
+                                <Card 
+                                    title='Code'
+                                    subtitle='yoga1290-ui-pool/react/search-and-select-list'
+                                    text= {<pre className='user-select-all'>
+                                        {SAMPLE_SEARCH_AND_SELECT_LIST}
+                                    </pre>}
+                                    click={copyToClipboard(SAMPLE_SEARCH_AND_SELECT_LIST)}
+                                    icon='content_copy' />
+                            </div>
+
                         </div>
                         
                         <hr/>

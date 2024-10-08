@@ -17,16 +17,17 @@
         border: 1px solid;
     }
 
-    .card-featured-upper__menu-button + .card-featured-upper__menu {
-        visibility: hidden;
-        bottom: 60px;
+    .card-featured-upper__menu-container:hover,
+    .card-featured-upper__menu-container:active,
+    .card-featured-upper__menu-container:focus {
+
+        .card-featured-upper__menu {
+            visibility: visible;
+        }
+
     }
-    .card-featured-upper__menu-button:hover + .card-featured-upper__menu,
-    .card-featured-upper__menu-button + .card-featured-upper__menu:hover,
-    .card-featured-upper__menu-button:hover + .card-featured-upper__menu:hover,
-    .card-featured-upper__menu-button:focus + .card-featured-upper__menu,
-    .card-featured-upper__menu-button + .card-featured-upper__menu:focus,
-    .card-featured-upper__menu-button:focus + .card-featured-upper__menu:focus {
-        visibility: visible;
+    .card-featured-upper__menu-container .card-featured-upper__menu {
+        visibility: hidden;
+        bottom: 100%;
     }
 }

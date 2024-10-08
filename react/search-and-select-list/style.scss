@@ -1,0 +1,66 @@
+.search-and-select-list {
+
+    color: white;
+    word-break: break-all;
+
+    &.card {
+        border: 1px solid #3636;
+        box-shadow: 0px 1px 1px white;
+    }
+
+    .card-with-icon {
+        .material-symbols-outlined {
+            padding: 1rem !important;
+        }
+    }
+
+    .search-bar__subquery {
+        background-color: transparent;
+        border-radius: 2px;
+        color: white;
+        border: 0px;
+        border-bottom: 0.25rem solid white;
+        // border: 0rem;
+        margin: 5px;
+        font-size: 2rem;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .card {
+        border: 1px solid #3636;
+        .card-title {
+            font-size: 2rem;
+            margin: 0.5rem;
+        }
+    }
+
+    .search-bar__filter-icon {
+        bottom: 3rem;
+        right: 1rem;
+        float: right;
+    }
+    .selected-items {
+        color: white;
+        .card {
+            border: 1px solid #3636;
+        }
+    }
+
+
+
+    .selected-items .card {
+        background-color: rgba(0, 0, 0, .3) !important;
+    }
+    // .card-body {
+    //     display: none;
+    // }
+
+    // :hover {
+    //     .card-body {
+    //         display: block;
+    //     }
+    // }
+}
