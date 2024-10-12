@@ -99,7 +99,7 @@ export default ({   title,
             </div>
 
         {!!hasPrevious && (<>
-            <div className="align-self-stretch d-inline-block col-12 col-sm-6 col-xl-3">
+            <div className="align-self-stretch d-inline-block col-12 col-sm-6">
                 <div 
                     className="card bg-dark d-inline-flex col-12 m-2 cursor-pointer"
                     onClick={() => (setPageNumber(pageNumber - 1))}>
@@ -115,7 +115,7 @@ export default ({   title,
         {!!result && result.content
                     .filter( a => selectedItem.filter(b=>(deepCompare(a,b))).length == 0)
                     .map( (it, idx) =>
-            <div className="align-self-stretch d-inline-flex col-12 col-lg-6 col-xl-3" key={idx}>
+            <div className="align-self-stretch d-inline-flex col-12 col-lg-6" key={idx}>
                     <div 
                         className="card bg-dark d-inline-flex col-12 m-2 cursor-pointer"
                         onClick={() => {
@@ -156,7 +156,7 @@ export default ({   title,
 
 
         {!!hasNext && (<>
-            <div className="align-self-stretch d-inline-flex col-12 col-sm-6 col-xl-3">
+            <div className="align-self-stretch d-inline-flex col-12 col-sm-6">
                 <div 
                     className="card bg-dark d-inline-flex col-12 m-2 cursor-pointer"
                     onClick={() => (setPageNumber(pageNumber + 1))}>

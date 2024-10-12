@@ -30,4 +30,8 @@
         visibility: hidden;
         bottom: 100%;
     }
+    
+    .card-featured-upper__menu-container button:focus + .card-featured-upper__menu {
+        visibility: visible;
+    }
 }

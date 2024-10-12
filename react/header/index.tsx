@@ -31,15 +31,15 @@ export default ({ brand, items }: HeaderProp) => (<header>
                     {items.map( ({ title, link, icon, callback }:ItemProp) => (
                         <li className="nav-item text-center" key={link}>
                             {!!link ? 
-                                (<NavLink to={link} className="nav-link text-center" tabIndex={0}>
-                                    <button className='nav-btn btn p-0 m-0' tabIndex={-1}>
+                                (<NavLink to={link} className="nav-link text-center p-0" tabIndex={-1}>
+                                    <button className='nav-btn btn p-2 m-0' tabIndex={0}>
                                         <span className="material-symbols-outlined align-middle">{ icon }</span>
                                         <div className="d-sm-block d-md-inline align-middle">{ title }</div>
                                     </button>
                                 </NavLink>) : ''}
 
                             {!!callback?
-                                <button className='nav-btn btn p-0 m-0' onClick={callback} tabIndex={0}>
+                                <button className='nav-btn btn p-2 m-0' onClick={callback} tabIndex={0}>
                                     <span className="material-symbols-outlined align-middle">{ icon }</span>
                                     <div className="d-sm-block d-md-inline align-middle">{ title }</div>
                                 </button> :''}

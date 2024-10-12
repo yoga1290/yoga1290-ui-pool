@@ -29,7 +29,7 @@
 
     .card-featured-upper__menu-container:hover,
     .card-featured-upper__menu-container:active,
-    .card-featured-upper__menu-container:focus {
+    .card-featured-upper__menu-container:focus           {
 
         .card-featured-upper__menu {
             visibility: visible;
@@ -41,4 +41,7 @@
         bottom: 100%;
     }
     
+    .card-featured-upper__menu-container button:focus + .card-featured-upper__menu {
+        visibility: visible;
+    }
 }
