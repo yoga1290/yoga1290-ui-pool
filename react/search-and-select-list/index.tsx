@@ -57,7 +57,7 @@ export default ({   title,
     }, [pageNumber, query]);
 
     return <>
-    <div className="search-and-select-list card col-12 d-inline-block bg-dark my-3">
+    <div className="search-and-select-list card col-12 d-inline-block bg-dark my-3 px-0">
         <div className="card-title">
             <input
                 className="search-bar__subquery text-center col-12 mx-0"
@@ -74,14 +74,14 @@ export default ({   title,
             </div>
         </div>
 
-        <div className="card-body row">
+        <div className="card-body row p-0 mx-0">
 
-            <div className="selected-items row justify-content-center">
+            <div className="selected-items row justify-content-center p-0 m-0">
             {!!selectedItem &&
                 selectedItem.map((it, idx) => (
                     <div
                         key={idx}
-                        className="card cursor-pointer m-1 col-12 col-lg-6">
+                        className="card cursor-pointer mx-auto my-1 col-12 col-lg-6">
 
                         <div
                             onClick={ () => { unselectItem(idx) } }
@@ -99,9 +99,9 @@ export default ({   title,
             </div>
 
         {!!hasPrevious && (<>
-            <div className="align-self-stretch d-inline-block col-12 col-sm-6">
+            <div className="align-self-stretch d-inline-block col-12 col-lg-6">
                 <div 
-                    className="card bg-dark d-inline-flex col-12 m-2 cursor-pointer"
+                    className="card bg-dark d-inline-flex col-12 mx-auto my-1 cursor-pointer"
                     onClick={() => (setPageNumber(pageNumber - 1))}>
                     <div className="card-body d-inline-flex justify-content-between">
                         <span className="material-symbols-outlined align-middle">arrow_back_ios</span>
@@ -117,7 +117,7 @@ export default ({   title,
                     .map( (it, idx) =>
             <div className="align-self-stretch d-inline-flex col-12 col-lg-6" key={idx}>
                     <div 
-                        className="card bg-dark d-inline-flex col-12 m-2 cursor-pointer"
+                        className="card bg-dark d-inline-flex col-12 mx-auto my-1 cursor-pointer"
                         onClick={() => {
 
                             if (!isElementSelected(it)) {
@@ -139,7 +139,7 @@ export default ({   title,
         {!!result && result.content.length == 0 && !!allowNew &&
         <>
                     <div 
-                        className="card bg-dark d-inline-flex col-12 m-2 cursor-pointer"
+                        className="card bg-dark d-inline-flex col-12 mx-auto my-1 cursor-pointer"
                         onClick={() => {
                             const newItem:any = {};
                             newItem[`${pathToItemTitle}`] = query;
@@ -158,7 +158,7 @@ export default ({   title,
         {!!hasNext && (<>
             <div className="align-self-stretch d-inline-flex col-12 col-sm-6">
                 <div 
-                    className="card bg-dark d-inline-flex col-12 m-2 cursor-pointer"
+                    className="card bg-dark d-inline-flex col-11 mx-auto my-1 cursor-pointer"
                     onClick={() => (setPageNumber(pageNumber + 1))}>
                     <div className="card-body d-inline-flex justify-content-between">
                         Next
