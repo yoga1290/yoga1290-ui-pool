@@ -28,7 +28,7 @@ export default ({ buttons }: ButtonListProps) => (
             </button>
             <div className='position-absolute card-featured-upper__menu py-2'>
                 <div className='card bg-dark border-light'>
-                    <div className='position-relative card-body row my-0'>
+                    <div className='position-relative card-body row my-0 p-2'>
                         {buttons.filter(findOthers).map( ({text, icon, click}, idx) => (
                             <button type="button"
                                 key={(idx+2)}
