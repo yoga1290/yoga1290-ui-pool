@@ -19,7 +19,7 @@ export default ({ title, text, subtitle, buttons }: CardProps) => (
                 <p className={`card-subtitle user-select-all mb-2 text-muted ${subtitle ? '':'invisible'}`}>
                     { subtitle }
                 </p>
-                <p className="card-text">{text}</p>
+                <div className="card-text">{text}</div>
 
                 {!!buttons && (
                     <div className="buttons-list row float-end">

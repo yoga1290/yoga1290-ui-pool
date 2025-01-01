@@ -20,7 +20,7 @@ export default ({ title, text, subtitle, click, icon, buttonText }: CardProps) =
                 <p className={`card-subtitle user-select-all mb-2 text-muted ${subtitle ? '':'invisible'}`}>
                     { subtitle }
                 </p>
-                <p className="card-text">{text}</p>
+                <div className="card-text">{text}</div>
 
                 <div className="row float-end">
                         <button type="button" className="btn border-0 btn-outline-light btn-sm" tabIndex={0}            

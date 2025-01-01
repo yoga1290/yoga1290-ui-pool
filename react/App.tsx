@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom'
 
 import Header, {HeaderProp} from "./header";
@@ -10,6 +10,8 @@ import CardFeatured /*, {CardProps}*/ from "./card-featured";
 import CardFeaturedWithButtons /*, {CardProps}*/ from "./card-featured-with-buttons";
 import CardFeaturedWithButtonsCarousal from './card-featured-with-buttons-carousal';
 import SearchAndSelectList from './search-and-select-list'; 
+import Modal from './modal';
+import CarousalStack from './carousal-stack';
 
 import './App.scss';
 import PagingAndSortingResult from './search-and-select-list/model/PagingAndSortingResult';
@@ -73,6 +75,15 @@ const SAMPLE_SEARCH_AND_SELECT_LIST = `<SearchAndSelectList
                                     last: false,
                                     size: 2
                                 } as PagingAndSortingResult<any>))}/>`;
+const SAMPLE_MODAL = `<Modal 
+    show={modalState}
+    onClose={() => ( setModalState(false) ) }
+    content={<>
+        <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
+            < ... />
+        </div>
+    </>}
+/>`;
 
 const cardsFeaturedWithButtonsCarousal = [
     {
@@ -106,8 +117,11 @@ const cardsFeaturedWithButtonsCarousal = [
             icon:'open_in_new'
         }],
     },];
-export default () => (
-  <div>            
+export default () => {
+
+    const [modalState, setModalState] = useState<boolean>(false);
+
+  return <div>            
             <HashRouter>
                <Header  brand={headerProps.brand}
                         items={headerProps.items} />
@@ -329,6 +343,70 @@ export default () => (
                         </div>
                         
                         <hr/>
+
+
+                        <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'>Modal</h1>
+
+                            <div className='col-12 px-0 mx-0'>
+                                <button className='form-control btn-primary'
+                                        onClick={ () => (setModalState(true))}>Open Modal</button>
+                                <Modal 
+                                    show={modalState}
+                                    onClose={() => ( setModalState(false) ) }
+                                    content={<>
+                                        <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
+                                            <CardFeaturedWithButtons 
+                                                title='Content'
+                                                subtitle=''
+                                                text='Click elsewhere to close'
+                                                icon='open_in_browser' />
+                                        </div>
+                                    </>}
+                                />
+                            </div>
+
+                            <div className='col-12'>
+                                <Card 
+                                    title='Code'
+                                    subtitle='yoga1290-ui-pool/react/modal'
+                                    text= {<pre className='user-select-all'>
+                                        {SAMPLE_MODAL}
+                                    </pre>}
+                                    click={copyToClipboard(SAMPLE_MODAL)}
+                                    icon='content_copy' />
+                            </div>
+
+                        </div>
+                        
+                        <hr/>
+
+
+                        <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'>Carousal Stack</h1>
+
+                            <div className='col-12 px-0 mx-0'>
+                                {/* [WIP] */}
+                                    <CarousalStack
+                                        content={[ '', '','', '', '', '', '']}
+                                        />
+                            </div>
+
+                            <div className='col-12'>
+                                <Card 
+                                    title='Code'
+                                    subtitle='yoga1290-ui-pool/react/carousal-stack'
+                                    text= {<pre className='user-select-all'>
+                                        [WIP]: for now you use Tab and shift+Tap buttons.
+                                    </pre>}
+                                    click={copyToClipboard('')}
+                                    icon='content_copy' />
+                            </div>
+
+                        </div>
+                        
+                        <hr/>
+                        
                         
 
 
@@ -338,5 +416,5 @@ export default () => (
 
 
             
-    </div>
-);
+    </div>;
+};

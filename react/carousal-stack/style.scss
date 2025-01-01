@@ -1,0 +1,89 @@
+// .carousal-shuffle > .carousal-shuffle__item {
+//     position: relative !important;
+// }
+
+.carousal-shuffle {
+
+    position: relative;
+    // height: 500px;
+    //left: 20%;
+    padding: 3rem 0rem;
+
+
+    .carousal-shuffle__item {
+
+        position: relative;
+        // margin: 3rem -1rem 2rem 1rem;
+        margin: 0rem -1rem 0rem -1rem;
+        padding: 2rem 0rem;
+        height: 100%;
+        // padding-right: 1rem;
+        width: 100%;
+        // background-color: rgba(231, 235, 240, 0.3);
+
+
+
+        .carousal-shuffle__item-content {
+            position: absolute;
+            max-width: 100%;
+
+            // transform: scale(0.8, 0.8) translate(-10%, 25%) skewY(10deg);
+            transform: scale(0.5, 0.5);
+            transition: transform 1s ease-in-out width height;
+        }
+
+        // .carousal-shuffle__item-content:hover,
+        .carousal-shuffle__item-content:focus,
+        .carousal-shuffle__item-content:active {
+            position: absolute;
+            left: 0rem;
+            top: 0rem;
+            // height: 90vh;
+            // width: 90vw;
+    
+            // transform: scale(1, 1) translate(-25%, -5%);
+            transform: scale(1, 1) translate(0, 0);
+            background-color: rgba(1, 10, 21, 0.9);
+            transition: transform 1s ease-in-out;
+            // width: 50vw;
+            
+            // height: 100%;
+            // max-height: 100%;
+
+            z-index: 2;
+        }
+    }
+
+
+    // .carousal-shuffle__item {
+    //     position: absolute;
+
+    //     transform: scale(1, 1) translate(0px, 0px);
+    //     transition: transform 2s ease-in-out;
+    // }
+
+    // .carousal-shuffle__item:nth-child(n+1) {
+    //     padding: 0rem 1rem;
+    //     // left: -1rem;
+    //     margin: 1rem 1rem;
+
+    // }
+    // .carousal-shuffle__item:nth-child(n+2) {
+    //     padding: 0rem 2rem;
+    //     // left: -2rem;
+    //     margin: 2rem 2rem;
+    // }
+    // .carousal-shuffle__item:nth-child(n+3) {
+    //     padding: 0rem 3rem;
+    //     margin: 3rem 3rem;
+    //     // left: -3rem;
+    // }
+
+    // .carousal-shuffle__item:hover {
+    //     transition: translate(50%, 50%);
+
+    //     transform: scale(3, 3) translate(50px, 0px);
+    //     transition: transform 2s ease-in-out;
+    //     z-index: 2;
+    // }
+}

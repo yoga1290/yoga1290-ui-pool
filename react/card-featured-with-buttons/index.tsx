@@ -34,7 +34,7 @@ export default ({ title, text, subtitle, backgroundImageUrl, buttons }: CardProp
                 <p className={`card-subtitle user-select-all mb-2 text-muted ${subtitle ? '':'invisible'}`}>
                             { subtitle }
                 </p>
-                <p className="card-text">{text}</p>
+                <div className="card-text">{text}</div>
 
 
                 {!!buttons && (

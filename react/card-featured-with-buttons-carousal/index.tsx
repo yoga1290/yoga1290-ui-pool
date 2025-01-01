@@ -57,7 +57,7 @@ export default ({ cards, delay=5 }: CarousalProps) => {
         
         { cards.map( ({ title, text, subtitle, backgroundImageUrl, buttons}, idx) => (
             
-            <div className={`card-featured-with-buttons align-self-stretch d-flex ${cardIdx==idx? 'position-relative':'position-absolute'}`}>
+            <div key={idx} className={`card-featured-with-buttons align-self-stretch d-flex ${cardIdx==idx? 'position-relative':'position-absolute'}`}>
 
                 <div className={`card bg-dark col-12 border-light pointer-cursor py-2 my-4 ${cardIdx==idx? 'animate__fadeInRight':'animate__fadeOutLeft'} animate__animated animate__delay-1s`} tabIndex={0}
                     style={getCSSBackgroud(backgroundImageUrl)}
