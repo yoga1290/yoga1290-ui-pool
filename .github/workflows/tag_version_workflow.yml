@@ -21,4 +21,4 @@ jobs:
         GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
         GITHUB_TOKEN: ${{ secrets.github_token }}
       run: |
-        bash +x ./.github/workflows/tag_version.sh
+        bash +x ./ci/tag_version-github.sh

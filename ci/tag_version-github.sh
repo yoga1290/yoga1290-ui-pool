@@ -1,5 +1,5 @@
-REMOTE_ORIGIN="https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-git remote set-url origin $REMOTE_ORIGIN;
+REMOTE_GIT_URL="https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+git remote set-url origin $REMOTE_GIT_URL;
 git pull origin --tags;
 
 YYMM=$(date +%y.%m)
@@ -9,6 +9,3 @@ echo "NEW TAG: $TAG"
 
 git tag $TAG;
 git push origin --tags;
-
-
-

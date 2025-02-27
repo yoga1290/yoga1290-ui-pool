@@ -29,7 +29,7 @@ export default ({ title, text, subtitle, click, icon, buttonText, backgroundImag
                 style={getCSSBackgroud(backgroundImageUrl)}>
             <div className="card-body card-featured__body">
 
-                <div className="card-featured__inner-card card bg-dark col-12 offset-md-3 col-md-8 offset-lg-3 col-lg-6 offset-0 offset-sm-2 col-sm-8 border-light py-2">
+                <div className="card-featured__inner-card card bg-dark col-12 col-md-10 col-lg-8 col-sm-10 border-light offset-sm-1 offset-md-1 offset-lg-2">
                     <div className="card-body">
                         <h5 className="card-title user-select-all">{ title }</h5>
                         <p className={`card-subtitle user-select-all mb-2 text-muted ${subtitle ? '':'invisible'}`}>
