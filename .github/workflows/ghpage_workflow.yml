@@ -27,7 +27,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.github_token }}
         COMMIT_FILES: "./docs"
       run: |
-        bash +x ./.github/workflows/ghpage.sh
+        bash +x ./ci/ghpage.sh
     # Store the gh-pages as artifact
     # see https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
     - name: Upload GH-Page bundle

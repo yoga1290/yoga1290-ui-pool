@@ -32,7 +32,7 @@ export default ({ buttons }: ButtonListProps) => (
                         {buttons.filter(findOthers).map( ({text, icon, click}, idx) => (
                             <button type="button"
                                 key={(idx+2)}
-                                className="btn border-0 btn-outline-light btn-sm d-flex justify-content-between"
+                                className="btn border-0 btn-outline-light btn-sm d-flex text-left justify-content-between"
                                 onClick={!!click? click: (()=>{})}>
 
                                 {!!text?

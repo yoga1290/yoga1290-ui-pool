@@ -1,0 +1,33 @@
+.collapsible-list-view {
+
+    .see-more {
+        color: #bfbcbc;
+        font-size: 0.8rem;
+    }
+
+    .collapsible-list-view__queue-stack {
+        position: relative;
+        padding-bottom: 3.5rem;
+        padding-left: 1rem;
+
+        .collapsible-list-view__child {
+            position: absolute;
+            padding-right: 0rem;
+            margin-right: 0rem;
+            width: 100%;
+
+            .card {
+                box-shadow: 0 5px 15px rgba(0,0,0, 0.5);
+            }
+        }
+
+        .collapsible-list-view__child:hover,
+        .collapsible-list-view__child:focus-visible,
+        .collapsible-list-view__child:focus-within,
+        .collapsible-list-view__child:focus,
+        .collapsible-list-view__child:active {
+            z-index: 3;
+        }
+    }
+
+}
