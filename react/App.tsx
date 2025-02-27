@@ -11,7 +11,8 @@ import CardFeaturedWithButtons /*, {CardProps}*/ from "./card-featured-with-butt
 import CardFeaturedWithButtonsCarousal from './card-featured-with-buttons-carousal';
 import SearchAndSelectList from './search-and-select-list'; 
 import Modal from './modal';
-import CarousalStack from './carousal-stack';
+// import CarousalStack from './carousal-stack';
+import CollapsibleList from './collapsible-list';
 
 import './App.scss';
 import PagingAndSortingResult from './search-and-select-list/model/PagingAndSortingResult';
@@ -117,6 +118,32 @@ const cardsFeaturedWithButtonsCarousal = [
             icon:'open_in_new'
         }],
     },];
+
+const CollapsibleListChild = [<CardFeaturedWithButtons 
+                                    title='Card-featured-with-buttons#1'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser' />,
+                                <CardFeaturedWithButtons 
+                                    title='Card-featured-with-buttons#2'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser' />,
+                                <CardFeaturedWithButtons 
+                                    title='Card-featured-with-buttons#3'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser' />,
+                                <CardFeaturedWithButtons 
+                                    title='Card-featured-with-buttons#4'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser' />,
+                                <CardFeaturedWithButtons 
+                                    title='Card-featured-with-buttons#5'
+                                    subtitle='Subtitle'
+                                    text='Text'
+                                    icon='open_in_browser' />];
 export default () => {
 
     const [modalState, setModalState] = useState<boolean>(false);
@@ -381,12 +408,11 @@ export default () => {
                         
                         <hr/>
 
-
-                        <div className='row'>
+                        {/* ========================================= */}
+                        {/* <div className='row'>
                             <h1 className='col-12 fs-1 bg-dark'>Carousal Stack</h1>
 
                             <div className='col-12 px-0 mx-0'>
-                                {/* [WIP] */}
                                     <CarousalStack
                                         content={[ '', '','', '', '', '', '']}
                                         />
@@ -398,6 +424,36 @@ export default () => {
                                     subtitle='yoga1290-ui-pool/react/carousal-stack'
                                     text= {<pre className='user-select-all'>
                                         [WIP]: for now you use Tab and shift+Tap buttons.
+                                    </pre>}
+                                    click={copyToClipboard('')}
+                                    icon='content_copy' />
+                            </div>
+
+                        </div>
+                        
+                        <hr/> */}
+
+                        {/* ========================================= */}
+                        <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'>Collapsible List</h1>
+
+                            <div className='col-12 col-sm-4 p-3'>
+                                <CollapsibleList
+                                    children={CollapsibleListChild}
+                                />
+                            </div>
+                            <div className='col-12 col-sm-8 p-3'>
+                                <CollapsibleList
+                                    children={CollapsibleListChild}
+                                />
+                            </div>
+
+                            <div className='col-12'>
+                                <Card 
+                                    title='Code'
+                                    subtitle='yoga1290-ui-pool/react/collapsible-list'
+                                    text= {<pre className='user-select-all'>
+                                        {`<CollapsibleList children={[<></>, <></>,...]} />`}
                                     </pre>}
                                     click={copyToClipboard('')}
                                     icon='content_copy' />

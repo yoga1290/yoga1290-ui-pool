@@ -10,15 +10,15 @@
     }
 
     .card-featured__body {
+        bottom: 0px;
+        position: relative;
+        margin-top: 13rem;
         background-position: center top;
     }
 
     .card-featured__inner-card {
         border: 1px solid;
         background-color: rgb(33, 37, 41, 0.3);
-
-        bottom: 0px;
-        margin-top: 200px;
     }
     
 }
