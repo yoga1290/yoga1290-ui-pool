@@ -1,5 +1,9 @@
 .modal-page {
 
+    top: 0rem;
+    position: fixed;
+    z-index: 3000;
+
     .modal-page__background {
         background-color: rgba(255,255,255, 0.5);
         width: 100vw;
@@ -7,18 +11,17 @@
         top: 0px;
         left: 0px;
         position: fixed;
-        z-index: 2;
+
     }
 
     .modal-page__modal {
-        position: fixed;
-        z-index: 3;
         top: 50vh;
         left: 50vw;
 
         .modal-page__modal-content {
-            position: relative;
-            height: 100%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
             width: 100vw;
             transform: translate(-50%, -50%);
         }
