@@ -48,12 +48,16 @@ export default ({   title,
         a.splice(idx, 1);
         setSelectedItem(a);
     };
+    const [showSpinner, setShowSpinner] = useState<Boolean>(false);
 
     useEffect(() => {
+        setShowSpinner(true);
         onItemsQuery(query, pageNumber).then(
-            (_result:PagingAndSortingResult<Object>) => (
-                setResult(_result)
-            ));
+            (_result:PagingAndSortingResult<Object>) => {
+
+                setResult(_result);
+                setTimeout(() => (setShowSpinner(false)), 500);
+            });
     }, [pageNumber, query]);
 
     return <>
@@ -67,7 +71,14 @@ export default ({   title,
                     setQuery(e.target.value);
                 }}
                 placeholder={title} />
-            <div className="search-bar__filter col-12 position-absolute">
+            <div className="search-bar__filter position-relative">
+
+                {!!showSpinner?
+                    <div
+                        className="search-bar__filter-spinner spinner-border text-light position-absolute"
+                        role="status">
+                    </div>:<></>}
+
                 <span className="search-bar__filter-icon position-relative material-symbols-outlined align-middle">
                 search
                 </span>

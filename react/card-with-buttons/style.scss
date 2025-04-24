@@ -17,6 +17,13 @@
         border: 1px solid;
     }
 
+    .card__menu-spinner {
+        position: relative;
+        width: 1rem;
+        height: 1rem;
+        margin-top: 0.1rem;
+    }
+
     .card-featured-upper__menu-container:hover,
     .card-featured-upper__menu-container:active,
     .card-featured-upper__menu-container:focus {

@@ -37,10 +37,17 @@
         }
     }
 
-    .search-bar__filter-icon {
-        bottom: 3rem;
-        right: 1rem;
+    .search-bar__filter {
         float: right;
+        .search-bar__filter-spinner {
+            bottom: 3rem;
+            right: 1rem;
+        }
+        .search-bar__filter-icon {
+            bottom: 3.2rem;
+            right: 1rem;
+        }
+    
     }
     .selected-items {
         color: white;

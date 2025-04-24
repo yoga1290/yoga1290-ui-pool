@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export type ButtonProps = {
-    click?: React.MouseEventHandler<HTMLButtonElement>;
+    click?: React.MouseEventHandler<HTMLButtonElement>|Function|any;
     icon?: string;
     text?: string;
 };
@@ -13,9 +13,31 @@ export type ButtonListProps = {
 const findFirst = (_o:any, i:number) => (i == 0);
 const findOthers = (_o:any, i: number) => (i > 0);
 
-export default ({ buttons }: ButtonListProps) => (
+export default ({ buttons }: ButtonListProps) => {
 
-<div className='col-12'>
+    const [spinners, setSpinners] = useState<any>({});
+    const showSpinnerAt = (idx:number) => {
+        spinners[idx] = true;
+        setSpinners(spinners);
+    };
+    const hideSpinnerAt = (idx:number) => {
+        spinners[idx] = false;
+        setSpinners(spinners);
+    };
+    const isPromise = (v:any) => (typeof v === 'object' && typeof v.then === 'function');
+    
+    const showSpinnerIfPromise = (callback: any, idx: number) => {
+        if (isPromise(callback)) {
+            
+            showSpinnerAt(idx);
+            const closeSpinner = () => (hideSpinnerAt(idx));
+            return callback.then(closeSpinner, closeSpinner);
+        } else {
+            return callback;
+        }
+    };
+
+return <div className='col-12'>
     
     
     {(buttons.length > 1) && (<>
@@ -33,16 +55,25 @@ export default ({ buttons }: ButtonListProps) => (
                             <button type="button"
                                 key={(idx+2)}
                                 className="btn border-0 btn-outline-light btn-sm d-flex text-left justify-content-between"
-                                onClick={!!click? click: (()=>{})}>
+                                onClick={!!click? showSpinnerIfPromise(click, idx): (()=>{})}>
 
                                 {!!text?
                                     text:''
                                 }
 
-                                {!!icon?
-                                    <span className="material-symbols-outlined align-middle float-end">{icon}</span>
-                                    :''
-                                }
+                                <div className="position-relative">
+                                    
+                                    {!!spinners[idx]? 
+                                        <div
+                                            className="card-featured-upper__menu-spinner spinner-border text-dark"
+                                            role="status">
+                                        </div>:<></>}
+
+                                    {!!icon?
+                                        <span className="material-symbols-outlined align-middle float-end">{icon}</span>
+                                        :''
+                                    }
+                                </div>
                             </button>))}
                     </div>
                 </div>
@@ -56,7 +87,7 @@ export default ({ buttons }: ButtonListProps) => (
             tabIndex={0}
             key={idx}
             className="btn border-0 btn-outline-light btn-sm"
-            onClick={!!click? click: (()=>{})}>
+            onClick={!!click? showSpinnerIfPromise(click, idx): (()=>{})}>
 
             {!!text?
                 text:''
@@ -69,4 +100,4 @@ export default ({ buttons }: ButtonListProps) => (
         </button>))}
 
 </div>
-);
+};
