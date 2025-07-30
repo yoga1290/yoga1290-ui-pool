@@ -28,10 +28,11 @@ export default ( {content, show, onClose }: ModalProp) => {
 
         <div className='modal-page__modal'>
             
-            <div className='modal-page__modal-content'
-                onClick={(e) => (e.preventDefault())}>
+            <div className='modal-page__modal-content'>
                 
-                <div className='row justify-content-center px-0 animate__animated animate__fadeInUp animate__delay-1s'>
+                <div
+                    onClick={(e) => (e.preventDefault())}
+                    className='row justify-content-center px-0 animate__animated animate__fadeInUp animate__delay-1s'>
 
                     {content}
                     
