@@ -3,6 +3,15 @@
     top: 0rem;
     position: fixed;
     z-index: 3000;
+    
+    .close-btn {
+        z-index: 3003;
+        right: 0px;
+        position: absolute;
+        .material-symbols-outlined {
+            font-size: 3rem;
+        }
+    }
 
     .modal-page__background {
         background-color: rgba(255,255,255, 0.5);
