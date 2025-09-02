@@ -24,17 +24,20 @@
     }
 
     .modal-page__modal {
-        top: 50vh;
-        left: 50vw;
+        position: fixed;
+        width: 100%;
+        bottom: -0.5rem;
+        max-height: 100%;
+        overflow: scroll;
+        left: 0rem;
 
         .modal-page__modal-content {
-            position: fixed;
-            height: 100%;
-            width: 100%;
-            overflow: scroll;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            height: min-content;
+            > .card {
+                background-color: rgba(12, 12, 12, 0.3);
+                border: 0.5rem solid;
+                height: fit-content;
+            }
         }
     }
 

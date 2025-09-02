@@ -8,6 +8,7 @@ export type CardProps = {
     subtitle?: string;
     text?: string | ReactNode;
     backgroundImageUrl?: string;
+    backgroundShade?: boolean;
 
     click?: React.MouseEventHandler<HTMLButtonElement>;
     icon?: string;
@@ -17,17 +18,17 @@ export type CardProps = {
 interface BackgroundImage extends CSSProperties {
     ['backgroundImage']: string;
 }
-const getCSSBackgroud = (backgroundImageUrl: string = '') => ({
+const getCSSBackgroud = (backgroundImageUrl: string = '', shade:boolean=true) => ({
         'backgroundImage':
-            `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url(${backgroundImageUrl})`
+            `linear-gradient(rgba(0, 0, 0, ${shade? 0.9:0}), rgba(0, 0, 0, ${shade? 0.5:0})), url(${backgroundImageUrl})`
         } as BackgroundImage
 );
 
-export default ({ title, text, subtitle, backgroundImageUrl, buttons }: CardProps) => (
+export default ({ title, text, subtitle, backgroundImageUrl, buttons, backgroundShade }: CardProps) => (
         <div className={`card-featured-with-buttons animate__animated animate__fadeInUp col-12 align-self-stretch d-flex`}>
 
             <div className="card bg-dark col-12 border-light pointer-cursor py-2 my-2" tabIndex={0}
-                style={getCSSBackgroud(backgroundImageUrl)}>
+                style={getCSSBackgroud(backgroundImageUrl, backgroundShade)}>
             <div className="card-body card-featured__body">
 
                 <h5 className="card-title user-select-all">{ title }</h5>
