@@ -37,7 +37,7 @@ export default ({ buttons }: ButtonListProps) => {
         }
     };
 
-return <div className='col-12'>
+return <div className='col-12 d-print-none'>
     
     
     {(buttons.length > 1) && (<>
