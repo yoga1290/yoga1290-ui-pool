@@ -69,7 +69,7 @@ export default ({ cards, delay=5 }: CarousalProps) => {
                         <p className={`card-subtitle user-select-all mb-2 text-muted ${subtitle ? '':'invisible'}`}>
                                     { subtitle }
                         </p>
-                        <p className={`card-text text-muted ${cardIdx==idx? 'animate__fadeInUp animate__delay-2s':'animate__fadeOutDown'} animate__animated`}>{text}</p>
+                        <p className={`card-text text-muted ${cardIdx==idx? 'animate__fadeIn animate__delay-2s':'animate__fadeOutDown'} animate__animated`}>{text}</p>
 
 
                         {!!buttons && (

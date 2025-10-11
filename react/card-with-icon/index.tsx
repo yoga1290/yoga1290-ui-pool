@@ -12,7 +12,7 @@ export type CardProps = {
 const doNothing: React.MouseEventHandler<HTMLDivElement> = () => {};
 
 export default ({ title, text, subtitle, click, icon }: CardProps) => (
-        <div className={`card-with-icon animate__animated animate__fadeInUp col-12 align-self-stretch d-flex text-center`}>
+        <div className={`card-with-icon animate__animated animate__fadeIn col-12 align-self-stretch d-flex text-center`}>
 
             <div className="card bg-dark col-12 border-light pointer-cursor py-2 my-2" tabIndex={0} onClick={!!click? click:doNothing}>
             <div className="card-body">

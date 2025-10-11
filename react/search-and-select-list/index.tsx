@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 
-import PagingAndSortingResult from "./model/PagingAndSortingResult";
+import PagingAndSortingResult from "./dto/PagingAndSortingResult";
 
 export type FilterProp = {
     title: string;
     onItemsQuery?: Function; // onItemsQuery(text, pageNumber): Promise<PagingAndSortingResult<any>>
-    onSelectedItemsChange?: Function;
+
+    onSelectedItemsChange?: Function; //onSelectedItemsChange(items: any[])
     selectedItems?: Object[];
+    allowNew?: boolean;
+
+    onCustomItemRender?: Function;// = (item: Object) => (<></>); // renderItem(data): Node 
     pathToItemTitle?: string;
     defaultItemIcon?: string;
-    allowNew?: boolean;
 };
 
 export default ({   title,
@@ -18,7 +21,8 @@ export default ({   title,
                     pathToItemTitle,
                     defaultItemIcon,
                     onSelectedItemsChange,
-                    allowNew
+                    allowNew,
+                    onCustomItemRender
                      } : FilterProp) => {
 
     const [result, setResult] = useState<PagingAndSortingResult<any>>({
@@ -61,21 +65,14 @@ export default ({   title,
     }, [pageNumber, query]);
 
     return <>
-    <div className="search-and-select-list card col-12 d-inline-block bg-dark my-3 px-0">
+    <div className="search-and-select-list card col-12 d-inline-block my-3 px-0">
         <div className="card-title">
-            <input
-                className="search-bar__subquery text-center col-12 mx-0"
-                type="text"
-                onChange={(e) => {
-                    setPageNumber(0);
-                    setQuery(e.target.value);
-                }}
-                placeholder={title} />
-            <div className="search-bar__filter position-relative">
+            
+            <div className="search-bar__filter position-absolute">
 
                 {!!showSpinner?
                     <div
-                        className="search-bar__filter-spinner spinner-border text-light position-absolute"
+                        className="search-bar__frelativeilter-spinner spinner-border text-light position-absolute"
                         role="status">
                     </div>:<></>}
 
@@ -83,6 +80,35 @@ export default ({   title,
                 search
                 </span>
             </div>
+
+            <input
+                className="search-bar__subquery text-center col-9 mx-0"
+                type="text"
+                onChange={(e) => {
+                    setPageNumber(0);
+                    setQuery(e.target.value);
+                }}
+                placeholder={title} />
+            
+
+            <div className="page-btn-group col-3 col-md-2 d-inline justify-content-between d-inline-flex mx-0 px-0">
+                <button className="page-btn page-btn--back btn mx-1 px-1"
+                    onClick={() => (setPageNumber(pageNumber - 1))}
+                    disabled={!!!hasPrevious}>
+
+                    <span className="material-symbols-outlined align-middle">
+                        arrow_back_ios
+                    </span>
+                </button>
+                <button className="page-btn btn mx-1 px-1"
+                    onClick={() => (setPageNumber(pageNumber + 1))}
+                    disabled={!!!hasNext}>
+                    <span className="material-symbols-outlined align-middle">
+                        arrow_forward_ios
+                    </span>
+                </button>
+            </div>
+
         </div>
 
         <div className="card-body row p-0 mx-0">
@@ -90,26 +116,42 @@ export default ({   title,
             <div className="selected-items row justify-content-center p-0 m-0">
             {!!selectedItem &&
                 selectedItem.map((it, idx) => (
-                    <div
-                        key={idx}
-                        className="card cursor-pointer mx-auto my-1 col-12 col-lg-6">
+                    <div onClick={ () => { unselectItem(idx) } }>
 
-                        <div
-                            onClick={ () => { unselectItem(idx) } }
-                            className="card-body d-inline-flex justify-content-between">
-                            <span className="material-symbols-outlined align-left">
+                        <div className="d-inline position-absolute">
+                            <span className="select-item-overlay material-symbols-outlined align-left">
                                 check_box
                             </span>
-                            {(it as any)[`${pathToItemTitle}`]}
-                            <span className="material-symbols-outlined align-right">
-                                {!!defaultItemIcon? defaultItemIcon:'add_notes'}
-                            </span>
                         </div>
-                    </div>
+
+                    {!!onCustomItemRender?
+                    <>
+                        {!!onCustomItemRender && onCustomItemRender(it)}
+                    </>:<>
+                        <div
+                            key={idx}
+                            className="card cursor-pointer d-inline-block mx-auto my-1 col-12 col-lg-6">
+
+                            <div
+                                className="card-body d-inline-flex justify-content-between">
+                                {/* <span className="material-symbols-outlined align-left">
+                                    check_box
+                                </span> */}
+                                {(it as any)[`${pathToItemTitle}`]}
+                                <span className="material-symbols-outlined align-right">
+                                    {!!defaultItemIcon? defaultItemIcon:'add_notes'}
+                                </span>
+                            </div>
+                        </div>
+                    </>}
+
+                    
+                </div>
+                    
                 ))}
             </div>
 
-        {!!hasPrevious && (<>
+        {/* {!!hasPrevious && (<>
             <div className="align-self-stretch d-inline-block col-12 col-lg-6">
                 <div 
                     className="card bg-dark d-inline-flex col-12 mx-auto my-1 cursor-pointer"
@@ -121,29 +163,41 @@ export default ({   title,
                 </div>
 
             </div>
-        </>)}
+        </>)} */}
 
         {!!result && result.content
                     .filter( a => selectedItem.filter(b=>(deepCompare(a,b))).length == 0)
                     .map( (it, idx) =>
-            <div className="align-self-stretch d-inline-flex col-12 col-lg-6" key={idx}>
-                    <div 
-                        className="card bg-dark d-inline-flex col-12 mx-auto my-1 cursor-pointer"
-                        onClick={() => {
+            <div className="align-self-stretch d-inline-flex col-12 col-md-6 col-lg-6"
+                    key={idx} 
+                    onClick={() => {
 
                             if (!isElementSelected(it)) {
                                 setSelectedItem([...selectedItem, it]);
                             }
                         }}>
+
+                    {!!onCustomItemRender?
+                    <>
+                        {!!onCustomItemRender && onCustomItemRender(it)}
+                    </>:
+                    <div 
+                        className="px-4 card bg-dark d-inline-flex col-12 mx-auto my-1 cursor-pointer">
                         <div className="card-body d-inline-flex justify-content-between">
-                            <span className="material-symbols-outlined align-left">
+                            {/* <span className="material-symbols-outlined align-left">
                                 check_box_outline_blank
-                            </span>
+                            </span> */}
                             {(it as any)[`${pathToItemTitle}`]}
                             <span className="material-symbols-outlined align-right">
                                 {!!defaultItemIcon? defaultItemIcon:'add_notes'}
                             </span>
                         </div>
+                    </div>}
+                    
+                    <div className="d-inline position-absolute">
+                        <span className="select-item-overlay material-symbols-outlined align-left">
+                            check_box_outline_blank
+                        </span>
                     </div>
             </div>
         ) }
@@ -166,7 +220,7 @@ export default ({   title,
         </>}
 
 
-        {!!hasNext && (<>
+        {/* {!!hasNext && (<>
             <div className="align-self-stretch d-inline-flex col-12 col-lg-6">
                 <div 
                     className="card bg-dark d-inline-flex col-12 mx-auto my-1 cursor-pointer"
@@ -178,7 +232,7 @@ export default ({   title,
                 </div>
 
             </div>
-        </>)}
+        </>)} */}
 
 
         </div>

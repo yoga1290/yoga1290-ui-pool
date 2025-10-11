@@ -25,7 +25,7 @@ const getCSSBackgroud = (backgroundImageUrl: string = '', shade:boolean=true) =>
 );
 
 export default ({ title, text, subtitle, backgroundImageUrl, buttons, backgroundShade }: CardProps) => (
-        <div className={`card-featured-with-buttons animate__animated animate__fadeInUp col-12 align-self-stretch d-flex`}>
+        <div className={`card-featured-with-buttons animate__animated animate__fadeIn col-12 align-self-stretch d-flex`}>
 
             <div className="card bg-dark col-12 border-light pointer-cursor py-2 my-2" tabIndex={0}
                 style={getCSSBackgroud(backgroundImageUrl, backgroundShade)}>

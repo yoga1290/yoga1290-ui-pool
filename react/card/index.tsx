@@ -12,7 +12,7 @@ export type CardProps = {
 };
 
 export default ({ title, text, subtitle, click, icon, buttonText }: CardProps) => (
-        <div className={`card-1 animate__animated animate__fadeInUp col-12 align-self-stretch d-flex`}>
+        <div className={`card-1 animate__animated animate__fadeIn col-12 align-self-stretch d-flex`}>
 
             <div className="card bg-dark col-12 border-light pointer-cursor py-2 my-4" tabIndex={0}>
             <div className="card-body">

@@ -1,12 +1,12 @@
-.search-and-select-list {
+.search-and-select-list-light .search-and-select-list {
 
-    color: white;
+    color: black;
     word-break: break-all;
 
     &.card {
-        background-color: #212529 !important;
         border: 1px solid #3636;
-        box-shadow: 0px 1px 1px white;
+        box-shadow: 0px 1px 1px black;
+        background-color: #dfdede !important;
     }
 
     .card-with-icon {
@@ -18,9 +18,9 @@
     .search-bar__subquery {
         background-color: transparent;
         border-radius: 2px;
-        color: white;
+        color: black;
         border: 0px;
-        border-bottom: 0.25rem solid white;
+        border-bottom: 0.25rem solid black;
         // border: 0rem;
         margin: 5px;
         font-size: 2rem;
@@ -31,12 +31,16 @@
         padding-top: 1rem;
         width: fit-content;
         .page-btn {
-            color: white;
+            color: black;
             background-color: transparent;
         }
+        .page-btn button:disabled {
+            color: gray;
+        }
+
         .page-btn:hover {
             color: black;
-            background-color: white;
+            background-color: transparent;
         }
         .page-btn--back span {
             left: 0.3rem;
@@ -50,7 +54,7 @@
     }
 
     .card {
-        // background-color: #212529 !important;
+        color: white;
         border: 1px solid #3636;
         .card-title {
             font-size: 2rem;
@@ -63,17 +67,17 @@
         top: 1rem;    
     }
     .selected-items {
-        color: black;
+        .select-item-overlay {
+            color: black;
+        }
         .card {
-            border: 1px solid #3636;
+            color: black;
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.3) !important;
         }
     }
 
 
-
-    .selected-items .card {
-        background-color: rgba(0, 0, 0, .3) !important;
-    }
     // .card-body {
     //     display: none;
     // }
@@ -84,12 +88,15 @@
     //     }
     // }
 
+    .search-bar__filter-spinner {
+        color: black !important;
+    }
+
     .select-item-overlay {
         color: white;
         font-size: 2rem;
         position: relative;
-        cursor: pointer;
         left: 0.5rem;
-        top: 1.8rem;
+        top: 2rem;
     }
 }

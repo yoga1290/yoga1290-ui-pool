@@ -9,13 +9,14 @@ import CardWithIcon /*, {CardProps}*/ from "./card-with-icon";
 import CardFeatured /*, {CardProps}*/ from "./card-featured";
 import CardFeaturedWithButtons /*, {CardProps}*/ from "./card-featured-with-buttons";
 import CardFeaturedWithButtonsCarousal from './card-featured-with-buttons-carousal';
-import SearchAndSelectList from './search-and-select-list'; 
+import SearchAndSelectList from './search-and-select-list';
+import SearchAndSelectListLight from './search-and-select-list/--light';
 import Modal from './modal';
 // import CarousalStack from './carousal-stack';
 import CollapsibleList from './collapsible-list';
 
 import './App.scss';
-import PagingAndSortingResult from './search-and-select-list/model/PagingAndSortingResult';
+import PagingAndSortingResult from './search-and-select-list/dto/PagingAndSortingResult';
 
 let headerProps: HeaderProp = {
     brand: 'yoga1290-ui-pool',
@@ -38,53 +39,7 @@ let headerProps: HeaderProp = {
     }]
 };
 
-const copyToClipboard = (copyText:string) => ( ()=>(navigator.clipboard.writeText(copyText)) );
-
-const SAMPLE_CARD_WITH_ICON = 
-    `<CardWithIcon 
-    title='Card w/ icon'
-    subtitle='[Subtitle]'
-    text='[Text]'
-    icon='open_in_browser' />`;
-const SAMPLE_CARD_WITH_BUTTONS = 
-    `<CardWithButtons
-        title='Card-with-icon'
-        subtitle='Subtitle'
-        text='Text'
-        buttons = {[ {title, icon, click} ]} />`;
-
-const SAMPLE_CARD_FEATURED =
-    `<CardFeatured 
-        title='Card-featured'
-        subtitle='Subtitle'
-        text='Text'
-        icon='open_in_browser' />`;
-
-const SAMPLE_SEARCH_AND_SELECT_LIST = `<SearchAndSelectList 
-                    title='Search some entities'
-                    defaultItemIcon='queue_music'
-                    allowNew={false}
-                    pathToItemTitle='someDisplayKey'
-                    onSelectedItemsChange={(selectedItems:any[]) => (console.log(selectedItems))}
-                    onItemsQuery={(_text: string, _pageNumber: number) =>(
-                                Promise.resolve({
-                                    content: [{
-                                        someDisplayKey: \`item \${!!text? \`for \${text}\`:''}\`,
-                                        somekey: 'somevalue'
-                                    }],
-                                    first: false,
-                                    last: false,
-                                    size: 2
-                                } as PagingAndSortingResult<any>))}/>`;
-const SAMPLE_MODAL = `<Modal 
-    show={modalState}
-    onClose={() => ( setModalState(false) ) }
-    content={<>
-        <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
-            < ... />
-        </div>
-    </>}
-/>`;
+// const copyToClipboard = (copyText:string) => ( ()=>(navigator.clipboard.writeText(copyText)) );
 
 const cardsFeaturedWithButtonsCarousal = [
     {
@@ -190,14 +145,6 @@ export default () => {
                                     text='Text'
                                     icon='open_in_new' />
                             </div>
-                            <div className='col-12 col-sm-6 col-md-6'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/card-featured'
-                                    text= {<pre className='user-select-all'>{SAMPLE_CARD_FEATURED}</pre>}
-                                    click={copyToClipboard(SAMPLE_CARD_FEATURED)}
-                                    icon='content_copy' />
-                            </div>
                         </div>
 
                         <div className='row'>
@@ -257,14 +204,6 @@ export default () => {
                                         icon:'share'
                                     }]} />
                             </div>
-                            <div className='col-12 col-sm-6 col-md-6'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/card-with-buttons'
-                                    text= {<pre className='user-select-all'>{SAMPLE_CARD_WITH_BUTTONS}</pre>}
-                                    click={copyToClipboard(SAMPLE_CARD_WITH_BUTTONS)}
-                                    icon='content_copy' />
-                            </div>
                         </div>
 
 
@@ -315,14 +254,6 @@ export default () => {
                                     text='[Text]'
                                     icon='open_in_browser' />
                             </div>
-                            <div className='col-12 col-sm-6 col-md-6'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/card-featured-with-buttons'
-                                    text= {<pre className='user-select-all'>{SAMPLE_CARD_WITH_ICON}</pre>}
-                                    click={copyToClipboard(SAMPLE_CARD_WITH_ICON)}
-                                    icon='content_copy' />
-                            </div>
                         </div>
                         
                         <hr/>
@@ -354,17 +285,95 @@ export default () => {
                                                         last: false,
                                                         size: 2
                                                     } as PagingAndSortingResult<any>))}/>
-                            </div>
 
-                            <div className='col-12'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/search-and-select-list'
-                                    text= {<pre className='user-select-all'>
-                                        {SAMPLE_SEARCH_AND_SELECT_LIST}
-                                    </pre>}
-                                    click={copyToClipboard(SAMPLE_SEARCH_AND_SELECT_LIST)}
-                                    icon='content_copy' />
+                                <SearchAndSelectList 
+                                        title='Search some entities'
+                                        defaultItemIcon='queue_music'
+                                        allowNew={false}
+                                        pathToItemTitle='someDisplayKey'
+                                        onSelectedItemsChange={(selectedItems:any[]) => (console.log(selectedItems))}
+                                        onItemsQuery={(text: string, _pageNumber: number) =>(
+                                                    Promise.resolve({
+                                                        content: [{
+                                                            someDisplayKey: `item ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue',
+                                                            display: 'card'
+                                                        }, {
+                                                            someDisplayKey: `item#2 ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue2',
+                                                            display: 'card'
+                                                        }, {
+                                                            someDisplayKey: `item#3 ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue3',
+                                                            display: 'list'
+                                                        }, {
+                                                            someDisplayKey: `item ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue4',
+                                                            display: 'list'
+                                                        }],
+                                                        first: false,
+                                                        last: false,
+                                                        size: 2
+                                                    } as PagingAndSortingResult<any>))}
+                                        onCustomItemRender={(item:any) => {
+                                            const { display } = item;
+                                            const hasList = display == 'list';
+                                            if (hasList) {
+                                                return <CollapsibleList
+                                                    children={CollapsibleListChild}
+                                                />
+                                            }
+                                            return <Card 
+                                                    title={item.someDisplayKey}
+                                                    subtitle={item.somekey}
+                                                    text= {item.somekey}
+                                                    icon='content_copy' />
+                                        }}/>
+
+
+                                <SearchAndSelectListLight
+                                        title='Search some entities'
+                                        defaultItemIcon='queue_music'
+                                        allowNew={false}
+                                        pathToItemTitle='someDisplayKey'
+                                        onSelectedItemsChange={(selectedItems:any[]) => (console.log(selectedItems))}
+                                        onItemsQuery={(text: string, _pageNumber: number) =>(
+                                                    Promise.resolve({
+                                                        content: [{
+                                                            someDisplayKey: `item ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue',
+                                                            display: 'card'
+                                                        }, {
+                                                            someDisplayKey: `item#2 ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue2',
+                                                            display: 'card'
+                                                        }, {
+                                                            someDisplayKey: `item#3 ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue3',
+                                                            display: 'list'
+                                                        }, {
+                                                            someDisplayKey: `item ${!!text? `for ${text}`:''}`,
+                                                            somekey: 'somevalue4',
+                                                            display: 'list'
+                                                        }],
+                                                        first: false,
+                                                        last: false,
+                                                        size: 2
+                                                    } as PagingAndSortingResult<any>))}
+                                        onCustomItemRender={(item:any) => {
+                                            const { display } = item;
+                                            const hasList = display == 'list';
+                                            if (hasList) {
+                                                return <CollapsibleList
+                                                    children={CollapsibleListChild}
+                                                />
+                                            }
+                                            return <Card 
+                                                    title={item.someDisplayKey}
+                                                    subtitle={item.somekey}
+                                                    text= {item.somekey}
+                                                    icon='content_copy' />
+                                        }}/>
                             </div>
 
                         </div>
@@ -386,22 +395,11 @@ export default () => {
                                             <CardFeaturedWithButtons 
                                                 title='Content'
                                                 subtitle=''
-                                                text='Click elsewhere to close'
+                                                text='Close button on right'
                                                 icon='open_in_browser' />
                                         </div>
                                     </>}
                                 />
-                            </div>
-
-                            <div className='col-12'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/modal'
-                                    text= {<pre className='user-select-all'>
-                                        {SAMPLE_MODAL}
-                                    </pre>}
-                                    click={copyToClipboard(SAMPLE_MODAL)}
-                                    icon='content_copy' />
                             </div>
 
                         </div>
@@ -448,18 +446,8 @@ export default () => {
                                 />
                             </div>
 
-                            <div className='col-12'>
-                                <Card 
-                                    title='Code'
-                                    subtitle='yoga1290-ui-pool/react/collapsible-list'
-                                    text= {<pre className='user-select-all'>
-                                        {`<CollapsibleList children={[<></>, <></>,...]} />`}
-                                    </pre>}
-                                    click={copyToClipboard('')}
-                                    icon='content_copy' />
-                            </div>
-
                         </div>
+                        
                         
                         <hr/>
                         
