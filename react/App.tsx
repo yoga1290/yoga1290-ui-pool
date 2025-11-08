@@ -17,6 +17,7 @@ import CollapsibleList from './collapsible-list';
 
 import './App.scss';
 import PagingAndSortingResult from './search-and-select-list/dto/PagingAndSortingResult';
+import PanelFeatured from './panel-featured';
 
 let headerProps: HeaderProp = {
     brand: 'yoga1290-ui-pool',
@@ -145,6 +146,33 @@ export default () => {
                                     text='Text'
                                     icon='open_in_new' />
                             </div>
+                        </div>
+
+                        <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'> &#60; PanelFeatured &#62; </h1>                            
+                            <div className='col-12'>
+                                <PanelFeatured
+                                    title='Title'
+                                    subtitle='subtitle'>
+
+                                        <div className='col-5 d-inline'>
+                                            <CardWithIcon
+                                                title="Hello"
+                                            />
+                                        </div>
+                                        <div className='col-3 d-inline'>
+                                            <CardWithIcon
+                                                title="Hello"
+                                            />
+                                        </div>
+                                        <div className='col-1 d-inline'>
+                                            <CardWithIcon
+                                                title="Hello"
+                                            />
+                                        </div>
+                                    </PanelFeatured>
+                            </div>
+                            
                         </div>
 
                         <div className='row'>

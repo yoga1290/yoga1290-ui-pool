@@ -1,0 +1,50 @@
+.panel-featured {
+    .panel-featured-card {
+        color: white;
+        border: 0px;
+        background-color: #fff;
+
+
+        .panel-featured-title {
+            z-index: 2;
+            font-size: 8rem;
+            // padding-bottom: 4rem;
+            position: absolute;
+            transition: font-size ease-in 0.5s;
+
+            .card-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        .panel-featured-body {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            max-height: 13rem;
+            padding-top: 10rem;
+            transition: padding-top ease-in 0.5s;
+            width: 100%;
+
+            div {
+                align-self: stretch;
+            }
+        }
+        
+    }
+    .panel-featured-card:focus,
+    .panel-featured-card:focus-within,
+    .panel-featured-card:hover {
+        border: 1px solid;
+
+        .panel-featured-title {
+            font-size: 2rem;
+        }
+        .panel-featured-body {
+            overflow-y: hidden;
+            overflow-x: auto;
+            padding-top: 2rem;
+        }
+    }
+    
+}
