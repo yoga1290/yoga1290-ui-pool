@@ -7,8 +7,7 @@
 
         .panel-featured-title {
             z-index: 2;
-            font-size: 8rem;
-            // padding-bottom: 4rem;
+            font-size: 5rem;
             position: absolute;
             transition: font-size ease-in 0.5s;
 
@@ -22,7 +21,7 @@
             position: relative;
             overflow: hidden;
             max-height: 13rem;
-            padding-top: 10rem;
+            padding-top: 6rem;
             transition: padding-top ease-in 0.5s;
             width: 100%;
 
@@ -38,7 +37,7 @@
         border: 1px solid;
 
         .panel-featured-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
         .panel-featured-body {
             overflow-y: hidden;

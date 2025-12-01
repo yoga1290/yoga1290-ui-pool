@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode } from "react";
+import React, { CSSProperties, ReactNode, useEffect, useRef } from "react";
 import './style.scss';
 
 
@@ -27,8 +27,51 @@ const getCSSBackgroud = (backgroundImageUrl: string = '', shade:boolean=true) =>
         } as BackgroundImage
 );
 
-export default ({ title, subtitle, children, backgroundImageUrl, backgroundShade }: PanelProps) => (
-        <div className={`panel-featured animate__animated animate__fadeIn col-12 align-self-stretch d-flex`}>
+export default ({ title, subtitle, children, backgroundImageUrl, backgroundShade }: PanelProps) => {
+
+    const elRef : any = useRef(null);
+    const elContainerRef : any = useRef(null);
+    useEffect(() => {
+
+        const elParent = elRef.current;
+        const elContainer = elContainerRef.current;
+
+        const onScroll = (ev: any) => {
+            // skip if already horizontal scrolling
+            if (ev.wheelDeltaX!==0) return;
+
+            let scrollLeft = elParent.scrollLeft + 0;
+            const newX = Math.ceil(-1 * ev.wheelDeltaY + scrollLeft);
+
+            elParent.scroll(newX, 0);
+            scrollLeft = elParent.scrollLeft + 0;
+
+            const rightEdgeReached = ev.wheelDeltaY<0 && newX>scrollLeft; //width
+            const leftEdgeReached = ev.wheelDeltaY>0 && newX<0;
+            const invalidScroll = rightEdgeReached || leftEdgeReached;
+            if (!invalidScroll) {                
+                ev.preventDefault();
+                ev.stopPropagation();
+                (elContainer.scrollIntoViewIfNeeded?
+                    elContainer.scrollIntoViewIfNeeded():null);
+            }
+
+        };
+
+
+        elParent.addEventListener('wheel', onScroll);
+        elParent.addEventListener('scroll', onScroll);
+        const destroy = () => {
+            elParent.removeEventListener('wheel', onScroll);
+            elParent.removeEventListener('scroll', onScroll);
+        };
+        return destroy;
+    });
+
+    return (
+        <div
+            ref={elContainerRef}
+            className={`panel-featured animate__animated animate__fadeIn col-12 align-self-stretch d-flex`}>
 
             <div className="panel-featured-card card bg-dark col-12 border-light pointer-cursor py-2 my-4" tabIndex={0}
                 style={getCSSBackgroud(backgroundImageUrl, backgroundShade)}>
@@ -39,10 +82,12 @@ export default ({ title, subtitle, children, backgroundImageUrl, backgroundShade
             </div>
             
 
-            <div className="panel-featured-body card-body">
+            <div
+                ref={elRef}
+                className="panel-featured-body card-body">
 
                     {children?.map((el, idx) => (<>
-                        <div className="d-inline mx-1 w-100" key={idx}>
+                        <div className="d-flex align-self-stretch mx-1 w-100" key={idx}>
                             {el}
                         </div>
                     </>))}
@@ -52,4 +97,4 @@ export default ({ title, subtitle, children, backgroundImageUrl, backgroundShade
             </div>
 
         </div>
-    )
+)};
