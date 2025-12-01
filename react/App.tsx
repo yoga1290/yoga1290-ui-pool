@@ -155,21 +155,14 @@ export default () => {
                                     title='Title'
                                     subtitle='subtitle'>
 
-                                        <div className='col-5 d-inline'>
-                                            <CardWithIcon
-                                                title="Hello"
-                                            />
-                                        </div>
-                                        <div className='col-3 d-inline'>
-                                            <CardWithIcon
-                                                title="Hello"
-                                            />
-                                        </div>
-                                        <div className='col-1 d-inline'>
-                                            <CardWithIcon
-                                                title="Hello"
-                                            />
-                                        </div>
+                                        {new Array(20).fill(true).map( (_, i) =>
+                                            <div className='d-inline-block'
+                                                key={i}
+                                                style={{minWidth: '200px'}}>
+                                                <CardWithIcon
+                                                    title={`Sample Item#${i+1}`}
+                                                />
+                                        </div>)}
                                     </PanelFeatured>
                             </div>
                             
