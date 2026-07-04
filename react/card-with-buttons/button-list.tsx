@@ -19,22 +19,25 @@ export default ({ buttons }: ButtonListProps) => {
     const [spinners, setSpinners] = useState<any>({});
     const showSpinnerAt = (idx:number) => {
         spinners[idx] = true;
-        setSpinners(spinners);
+        setSpinners(Object.assign({}, spinners));
     };
     const hideSpinnerAt = (idx:number) => {
         spinners[idx] = false;
-        setSpinners(spinners);
+        setSpinners(Object.assign({}, spinners));
     };
-    const isPromise = (v:any) => (typeof v === 'object' && typeof v.then === 'function');
+    const isPromise = (v:any) => (typeof v === 'function');
     
     const showSpinnerIfPromise = (callback: any, idx: number) => {
         if (isPromise(callback)) {
-            
-            showSpinnerAt(idx);
-            const closeSpinner = () => (hideSpinnerAt(idx));
-            return callback.then(closeSpinner, closeSpinner);
+            let call = callback();
+            const hasPromise = typeof call.then === 'function';
+            if (hasPromise) {
+                showSpinnerAt(idx);
+                const closeSpinner = () => (hideSpinnerAt(idx));
+                return call.then(closeSpinner, closeSpinner);
+            }
         } else {
-            return callback;
+            return callback();
         }
     };
     
@@ -56,13 +59,13 @@ return <div className='col-12 d-print-none'>
                             <button type="button"
                                 key={idx+2}
                                 className="btn border-0 btn-outline-light btn-sm d-flex text-left justify-content-between"
-                                onClick={!!click? showSpinnerIfPromise(click, idx): (()=>{})}>
+                                onClick={!!click? ()=>(showSpinnerIfPromise(click, idx+1)): (()=>{})}>
 
                                 {!!text?
                                     text:''
                                 }
 
-                                <div className="position-relative">  
+                                <div className="btn-spinner">  
                                     {!!spinners[idx]? 
                                         <div
                                             className="card__menu-spinner spinner-border text-dark"
@@ -87,13 +90,13 @@ return <div className='col-12 d-print-none'>
             tabIndex={0}
             key={idx}
             className="btn border-0 btn-outline-light btn-sm"
-            onClick={!!click? showSpinnerIfPromise(click, idx): (()=>{})}>
+            onClick={!!click? ()=>(showSpinnerIfPromise(click, 0)): (()=>{})}>
 
             {!!text?
                 text:''
             }
 
-            <div className="position-relative">  
+            <div className="btn-spinner">  
                 {!!spinners[idx]? 
                     <div
                         className="card__menu-spinner spinner-border text-dark"

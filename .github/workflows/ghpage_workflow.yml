@@ -17,9 +17,9 @@ jobs:
         name: github-pages
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v6
       with:
-        node-version: '21.4.0'
+        node-version: '22.11.0'
     - name: Build and publish Frontend (GH Page)
       env:
         GITHUB_REPOSITORY: ${{github.repository}}

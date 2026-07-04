@@ -8,7 +8,20 @@
             right: 0px;
             bottom: 10px;
             position: absolute;
+
+            .btn-spinner {
+                position: relative;
+                vertical-align: middle;
+                display: inline-block;
+                .card__menu-spinner {
+                    position: relative;
+                    width: 1rem;
+                    height: 1rem;
+                    margin-top: 0.1rem;
+                }
+            }
         }
+        
 
         .card {
             color: white;

@@ -1,0 +1,74 @@
+.card-with-expanding-panel {
+    position: relative;
+    .card {
+        position: relative;
+        color: white;
+        border: 0px;
+    }
+    .card:focus {
+        border: 1px solid;
+    }
+    .card:hover {
+        border: 1px solid;
+    }
+
+    // .card .card-expanding-body {
+    //     display: none;
+    // }
+
+    // .expandable-card {
+    //     display: none;
+    //     width: 0rem;
+    //     height: 0rem;
+    //     z-index: 100;
+    //     position: absolute;
+    // }
+
+    .expanding-card {
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    
+
+
+    cursor: pointer;
+}
+
+.card-with-expanding-panel:hover {
+    position: relative;
+
+    .expanding-card {
+        position: absolute;
+    z-index: 10000;
+
+        display: block;
+        transition: all 0.5s ease-in-out;
+        /* Animate the expansion by increasing width and height over time */
+        animation: expand-in 1.2s forwards;
+        width: 100%;
+        height: 100%;
+
+        .card-expanding-body {
+            display: block;
+        }
+    }
+
+    /* Expansion Animation */
+    @keyframes expand-in {
+        from {
+            /* Start with initial width and height of 0 */
+            width: 0;
+            height: 0;
+            top: 0;
+            left: 0;
+        }
+        to {
+            /* Set final width and height based on the class name */
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+        }
+    }
+}
