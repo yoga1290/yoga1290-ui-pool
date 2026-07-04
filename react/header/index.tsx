@@ -21,12 +21,12 @@ export default ({ brand, items }: HeaderProp) => (<header>
             <div className="row my-0 col-12 d-flex justify-content-between">
 
                 <a href="#"
-                    className="navbar-brand text-center col-sm-12 col-md-3">
+                    className="navbar-brand text-center">
                     <strong> { brand } </strong>
                 </a>
                 
-                <div className="navbar-nav col-sm-12 col-md-7 d-print-none">
-                <ul className="nav justify-content-between">
+                <div className="navbar-nav d-print-none col-6 col-sm-8 p-0 m-0">
+                <ul className="nav justify-content-end">
 
                     {items.map( ({ title, link, icon, callback }:ItemProp) => (
                         <li className="nav-item text-center" key={link}>
