@@ -1,0 +1,184 @@
+.search-and-select-and-sort-panel {
+    background-color: white;
+    margin: 0.5rem 0rem;
+    /* ==========================================================================
+   Block: browser-nav
+   ========================================================================== */
+
+    /* Element: nav-left */
+    .browser-nav__nav-left {
+    /* layout handled by Bootstrap utilities; reserved for future overrides */
+    }
+
+    /* Element: address-bar text input (replaces the old label span) */
+    .browser-nav__address-bar-input {
+        /* Reset native input chrome */
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+
+        /* Match the old label's typography exactly */
+        font-family: inherit;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #1f2937;
+
+        /* Let it grow to fill available space in the flex row */
+        flex: 1;
+        min-width: 0;
+    }
+
+    .browser-nav__address-bar-input::placeholder {
+        color: #9ca3af;
+        font-weight: 600;
+    }
+
+    .browser-nav__address-bar-input:focus {
+        /* No visible focus ring by default — the pill container implies the field */
+        outline: none;
+    }
+
+    /* Optional: give the whole pill a subtle focus state so it's clear
+    the field is active, without changing the resting appearance */
+    .browser-nav__address-bar:focus-within {
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.35);
+    }
+
+    // .browser-nav__arrows {
+    // // gap: 1rem;
+    // }
+
+    /* Element: arrow (back/forward buttons) */
+    .browser-nav__arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: transparent;
+        padding: 0.25rem;
+        border-radius: 50%;
+        transition: background-color 0.15s ease-in-out;
+    }
+
+    .browser-nav__arrow:hover {
+        background-color: #f3f4f6;
+    }
+
+    /* Modifier: disabled state (forward arrow) */
+    .browser-nav__arrow--disabled {
+        opacity: 0.3;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    /* Element: address-bar */
+    .browser-nav__address-bar {
+        // margin: 0 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #f1f3f5;
+        border-radius: 0.5rem;
+    }
+
+    .browser-nav__address-bar-info {
+        gap: 0.75rem;
+    }
+
+    .browser-nav__address-bar-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    /* Element: utilities (right-side icon group) */
+    .browser-nav__utilities {
+        // gap: 1.25rem;
+        color: #4b5563;
+    }
+
+    /* Element: divider */
+    .browser-nav__divider {
+        display: inline-block;
+        width: 1px;
+        height: 1.5rem;
+        margin: 0 0.25rem;
+        background-color: #d1d5db;
+    }
+
+    /* Element: icon (shared across all icons in the block) */
+
+    .browser-nav__arrow--back .browser-nav__icon {
+        left: 0.25rem;
+    }
+
+    .browser-nav__icon {
+        display: inline-block;
+        position: relative;
+        top: -0.1rem;
+    }
+
+    .browser-nav__icon--search,
+    .browser-nav__icon--spinner {
+        position: relative;
+        left: -2rem;
+    }
+
+    /* Modifier: icon sizes */
+    .browser-nav__icon--xs {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .browser-nav__icon--sm {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    /* Modifier: icon color states */
+    .browser-nav__icon--muted {
+        color: #6b7280;
+    }
+
+    .browser-nav__icon--clickable {
+    cursor: pointer;
+        transition: color 0.15s ease-in-out;
+    }
+
+    .browser-nav__icon--clickable:hover {
+        color: #1a1a1a;
+    }
+
+
+    .search-and-select-and-sort-panel__list {
+        &__list--vertical {
+            max-height: 29rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        &__list--horizontal {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+
+            .search-and-select-and-sort-panel__item {
+                flex: 0 0 auto;
+                border-bottom: none;
+                border-right: 1px solid #f1f3f5;
+
+                &:last-child {
+                    border-right: none;
+                }
+            }
+        }
+        .search-and-select-and-sort-panel__item {
+            padding: 0.5rem;
+        }
+        .search-and-select-and-sort-panel__item--inline {
+            display: inline-flex;
+        }
+    }
+}

@@ -1,5 +1,6 @@
-import React, { CSSProperties, ReactNode, useEffect, useRef } from "react";
+import React, { CSSProperties, ReactNode, useRef } from "react";
 import './style.scss';
+import useHorizontalScroll from "./useHorizontalScroll";
 
 
 export type PanelProps = {
@@ -29,48 +30,14 @@ const getCSSBackgroud = (backgroundImageUrl: string = '', shade:boolean=true) =>
 
 export default ({ title, subtitle, children, backgroundImageUrl, backgroundShade }: PanelProps) => {
 
-    const elRef : any = useRef(null);
-    const elContainerRef : any = useRef(null);
-    useEffect(() => {
-
-        const elParent = elRef.current;
-        const elContainer = elContainerRef.current;
-
-        const onScroll = (ev: any) => {
-            // skip if already horizontal scrolling
-            if (ev.wheelDeltaX!==0) return;
-
-            let scrollLeft = elParent.scrollLeft + 0;
-            const newX = Math.ceil(-1 * ev.wheelDeltaY + scrollLeft);
-
-            elParent.scroll(newX, 0);
-            scrollLeft = elParent.scrollLeft + 0;
-
-            const rightEdgeReached = ev.wheelDeltaY<0 && newX>scrollLeft; //width
-            const leftEdgeReached = ev.wheelDeltaY>0 && newX<0;
-            const invalidScroll = rightEdgeReached || leftEdgeReached;
-            if (!invalidScroll) {                
-                ev.preventDefault();
-                ev.stopPropagation();
-                (elContainer.scrollIntoViewIfNeeded?
-                    elContainer.scrollIntoViewIfNeeded():null);
-            }
-
-        };
-
-
-        elParent.addEventListener('wheel', onScroll);
-        elParent.addEventListener('scroll', onScroll);
-        const destroy = () => {
-            elParent.removeEventListener('wheel', onScroll);
-            elParent.removeEventListener('scroll', onScroll);
-        };
-        return destroy;
-    });
+    const scrollableElRef : any = useRef(null);
+    const containerRef : any = useRef(null);
+    const allowHorizontalView = true;
+    useHorizontalScroll({ containerRef, scrollableElRef, allowHorizontalView });
 
     return (
         <div
-            ref={elContainerRef}
+            ref={containerRef}
             className={`panel-featured animate__animated animate__fadeIn col-12 align-self-stretch d-flex`}>
 
             <div className="panel-featured-card card bg-dark col-12 border-light pointer-cursor py-2 my-4" tabIndex={0}
@@ -83,7 +50,7 @@ export default ({ title, subtitle, children, backgroundImageUrl, backgroundShade
             
 
             <div
-                ref={elRef}
+                ref={scrollableElRef}
                 className="panel-featured-body card-body">
 
                     {children?.map((el, idx) => (<>
