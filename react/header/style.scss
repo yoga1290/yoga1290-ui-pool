@@ -20,4 +20,11 @@
         color: white;
         border: 0.1rem solid white;
     }
+
+    .navbar-brand {
+        max-width: 25%;
+    }
+    .nav {
+        display: inline-flex;
+    }
 }
