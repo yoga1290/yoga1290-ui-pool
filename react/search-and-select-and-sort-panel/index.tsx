@@ -1,0 +1,237 @@
+import React from "react";
+import './style.scss';
+
+import usePagingAndSorting, { UsePagingAndSortingOptions } from "./usePagingAndSorting";
+
+interface PagingButtonsProps {
+    hasNext: boolean;
+    hasPrevious: boolean;
+    onPrevious: () => void;
+    onNext: () => void;
+}
+
+const PagingButtons: React.FC<PagingButtonsProps> = ({
+    hasNext,
+    hasPrevious,
+    onPrevious,
+    onNext,
+}) => (
+    <>
+        {/* <!-- Pagination Buttons --> */}
+        <div className="browser-nav__arrows d-flex align-items-center">
+            {/* <!-- Back Arrow --> */}
+            <button
+                aria-label="Go back"
+                className="browser-nav__arrow browser-nav__arrow--back"
+                onClick={onPrevious}
+                disabled={!hasPrevious}
+            >
+                <span
+                    className={`
+                        browser-nav__icon
+                        browser-nav__icon--sm
+                        material-symbols-outlined
+                        align-middle
+                        ${hasPrevious ? 'browser-nav__icon--clickable' : ''}
+                    `}
+                >
+                    arrow_back_ios
+                </span>
+            </button>
+            {/* <!-- Forward Arrow --> */}
+            <button
+                aria-label="Go forward"
+                className={`
+                    browser-nav__arrow
+                    browser-nav__arrow--forward
+                    ${!hasNext ? 'browser-nav__arrow--disabled' : ''}
+                `}
+                onClick={onNext}
+                disabled={!hasNext}
+            >
+                <span
+                    className={`
+                        browser-nav__icon
+                        browser-nav__icon--sm
+                        material-symbols-outlined
+                        align-middle
+                        ${hasNext ? 'browser-nav__icon--clickable' : ''}
+                    `}
+                >
+                    arrow_forward_ios
+                </span>
+            </button>
+        </div>
+    </>
+);
+
+interface SearchBarProps {
+    query: string;
+    onQueryChange: (query: string) => void;
+    hasNext: boolean;
+    hasPrevious: boolean;
+    onPrevious: () => void;
+    onNext: () => void;
+    showSpinner: boolean;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({
+    query,
+    onQueryChange,
+    hasNext,
+    hasPrevious,
+    onPrevious,
+    onNext,
+    showSpinner,
+}) => (
+    <div className="browser-nav w-100 d-flex" data-purpose="browser-navigation-bar">
+        {/* <!-- Center Search/Address Bar --> */}
+        <div className="browser-nav__address-bar flex-grow-1 d-flex align-items-center justify-content-between">
+            <div className="browser-nav__address-bar-info d-flex align-items-center col-12">
+                <span className="browser-nav__icon material-symbols-outlined align-middle"> home </span>
+                <input
+                    type="text"
+                    className="browser-nav__address-bar-input col-12"
+                    value={query}
+                    onChange={(e) => onQueryChange(e.target.value)}
+                    placeholder="Home"
+                    aria-label="Address bar"
+                />
+            </div>
+            <i
+                className="browser-nav__icon browser-nav__icon--xs browser-nav__icon--muted browser-nav__icon--clickable"
+                data-lucide="more-vertical"
+            ></i>
+        </div>
+
+        {/* <!-- Right Utilities --> */}
+        <div className="browser-nav__utilities d-flex align-items-center">
+            <div className="position-absolute">
+                {showSpinner ? (
+                    <span
+                        className="spinner-border spinner-border-sm browser-nav__icon--spinner"
+                        role="status"
+                        aria-label="Loading"
+                    />
+                ) : (
+                    <span className="browser-nav__icon browser-nav__icon--search material-symbols-outlined align-middle">
+                        search
+                    </span>
+                )}
+            </div>
+
+            <PagingButtons
+                hasNext={hasNext}
+                hasPrevious={hasPrevious}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+
+            <span className="browser-nav__divider"></span>
+            <span className="browser-nav__icon browser-nav__icon--sm browser-nav__icon--clickable material-symbols-outlined align-middle">
+                view_list
+            </span>
+        </div>
+    </div>
+);
+
+export interface SearchAndSelectAndSortPanelProps<T = any>
+    extends UsePagingAndSortingOptions<T> {
+    /** Optional custom row renderer; defaults to a JSON preview. */
+    renderItem?: (item: T, isSelected: boolean) => React.ReactNode;
+    /** Set to true to allow selecting multiple rows; false clears prior selection on new pick. */
+    multiSelect?: boolean;
+}
+
+export default function SearchAndSelectAndSortPanel<T = any>(
+    props: SearchAndSelectAndSortPanelProps<T>
+) {
+    const { renderItem, multiSelect = true, ...hookOptions } = props;
+
+    const {
+        result,
+        showSpinner,
+        query,
+        setQuery,
+        hasNext,
+        hasPrevious,
+        goToNextPage,
+        goToPreviousPage,
+        selectedItem,
+        isElementSelected,
+        toggleItemSelection,
+        setSelectedItem,
+    } = usePagingAndSorting<T>(hookOptions);
+
+    const handleToggle = (item: T) => {
+        if (multiSelect) {
+            toggleItemSelection(item);
+        } else {
+            const alreadySelected = isElementSelected(item);
+            setSelectedItem(alreadySelected ? [] : [item]);
+        }
+    };
+
+    const defaultRenderItem = (item: T) => (
+        <span className="search-and-select-and-sort-panel__item-preview">
+            {typeof item === 'string' ? item : JSON.stringify(item)}
+        </span>
+    );
+
+    return (
+        <div className="search-and-select-and-sort-panel card">
+            <div className="card-body px-0">
+                <SearchBar
+                    query={query}
+                    onQueryChange={setQuery}
+                    hasNext={hasNext}
+                    hasPrevious={hasPrevious}
+                    onPrevious={goToPreviousPage}
+                    onNext={goToNextPage}
+                    showSpinner={Boolean(showSpinner)}
+                />
+                {/* //TODO */}
+                <ul className={`search-and-select-and-sort-panel__list
+                                search-and-select-and-sort-panel__list__list--horizontal
+                                list-unstyled mb-0`}>
+                    {result.content.length === 0 && !showSpinner && (
+                        <li className="search-and-select-and-sort-panel__empty px-3 py-2 text-muted">
+                            No results
+                        </li>
+                    )}
+                    {result.content.map((item, idx) => {
+                        const selected = isElementSelected(item);
+                        return (
+                            <li
+                                key={idx}
+                                className={`
+                                    search-and-select-and-sort-panel__item
+                                    px-3 py-2 d-flex align-items-center
+                                    ${selected ? 'search-and-select-and-sort-panel__item--selected' : ''}
+                                `}
+                                onClick={() => handleToggle(item)}
+                                role="option"
+                                aria-selected={selected}
+                            >
+                                <input
+                                    type="checkbox"
+                                    className="form-check-input me-2"
+                                    checked={selected}
+                                    onChange={() => handleToggle(item)}
+                                    onClick={(e) => e.stopPropagation()}
+                                />
+                                {renderItem ? renderItem(item, selected) : defaultRenderItem(item)}
+                            </li>
+                        );
+                    })}
+                </ul>
+
+                {selectedItem.length > 0 && (
+                    <div className="search-and-select-and-sort-panel__selection-summary px-3 py-2 text-muted small">
+                        {selectedItem.length} item{selectedItem.length > 1 ? 's' : ''} selected
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}

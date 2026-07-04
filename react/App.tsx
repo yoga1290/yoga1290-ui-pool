@@ -2,22 +2,18 @@ import React, { useState } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom'
 
 import Header, {HeaderProp} from "./header";
-import Card /*, {CardProps}*/ from "./card";
 import CardWithButtons /*, {CardProps}*/ from "./card-with-buttons";
 
 import CardWithIcon /*, {CardProps}*/ from "./card-with-icon";
 import CardFeatured /*, {CardProps}*/ from "./card-featured";
 import CardFeaturedWithButtons /*, {CardProps}*/ from "./card-featured-with-buttons";
 import CardFeaturedWithButtonsCarousal from './card-featured-with-buttons-carousal';
-import SearchAndSelectList from './search-and-select-list';
-import SearchAndSelectListLight from './search-and-select-list/--light';
 import Modal from './modal';
-// import CarousalStack from './carousal-stack';
 import CollapsibleList from './collapsible-list';
 
 import './App.scss';
-import PagingAndSortingResult from './search-and-select-list/dto/PagingAndSortingResult';
 import PanelFeatured from './panel-featured';
+import SearchAndSelectAndSortPanel from './search-and-select-and-sort-panel';
 
 let headerProps: HeaderProp = {
     brand: 'yoga1290-ui-pool',
@@ -139,13 +135,6 @@ export default () => {
                                     click={ ()=>(window.open('https://github.com/yoga1290/yoga1290-ui-pool#readme', '_blank'))}
                                     icon='open_in_new' />
                             </div>
-                            <div className='col-12 col-sm-6 col-md-4'>
-                                <CardFeatured 
-                                    title='Card-featured'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    icon='open_in_new' />
-                            </div>
                         </div>
 
                         <div className='row'>
@@ -175,28 +164,13 @@ export default () => {
                                     delay={7}
                                     cards={cardsFeaturedWithButtonsCarousal} />
                             </div>
-                            <div className='col-md-8 col-sm-12 col-12'>
-                                <CardFeaturedWithButtonsCarousal
-                                    delay={4}
-                                    cards={cardsFeaturedWithButtonsCarousal} />
-                            </div>
-                            <div className='col-md-4 col-sm-12 col-12'>
-                                <CardFeaturedWithButtonsCarousal
-                                    delay={5}
-                                    cards={cardsFeaturedWithButtonsCarousal} />
-                            </div>
                             
                         </div>
 
-                        <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Card Featured With Buttons </h1>
-                            <div className='col-12 col-sm-6 col-md-4 align-self-stretch d-flex'>
-                                <CardFeaturedWithButtons 
-                                    title='Card-featured-with-buttons'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    icon='open_in_browser' />
-                            </div>
+                        <div className='row mx-auto'>
+                            <h1 className='col-12 fs-1 bg-dark'>Cards</h1>
+                            
+                            
                             <div className='col-12 col-sm-6 col-md-4'>
                                 <CardFeaturedWithButtons 
                                     title='Card-featured-with-buttons'
@@ -205,18 +179,10 @@ export default () => {
                                     icon='open_in_browser'
                                     buttons={[{
                                         text:'button1',
-                                        icon:'share'
-                                    }]} />
-                            </div>
-                            <div className='col-12 col-sm-6 col-md-4'>
-                                <CardFeaturedWithButtons 
-                                    title='Card-featured-with-buttons'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    icon='open_in_browser'
-                                    buttons={[{
-                                        text:'button1',
-                                        icon:'share'
+                                        icon:'share',
+                                        click:() => (
+                                            new Promise((res, _rej)=>( setTimeout(res, 60000)))
+                                        )
                                     }, {
                                         text:'button2',
                                         icon:'share'
@@ -225,18 +191,8 @@ export default () => {
                                         icon:'share'
                                     }]} />
                             </div>
-                        </div>
 
 
-                        <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Card with buttons</h1>
-
-                            <div className='col-12 col-sm-6 col-md-4 align-self-stretch d-flex'>
-                                <CardWithButtons 
-                                    title='Card-with-buttons'
-                                    subtitle='Subtitle'
-                                    text='Text' />
-                            </div>
                             <div className='col-12 col-sm-6 col-md-4'>
                                 <CardWithButtons 
                                     title='Card-with-buttons'
@@ -244,17 +200,10 @@ export default () => {
                                     text='Text'
                                     buttons={[{
                                         text:'button1',
-                                        icon:'share'
-                                    }]} />
-                            </div>
-                            <div className='col-12 col-sm-6 col-md-4'>
-                                <CardWithButtons 
-                                    title='Card-with-buttons'
-                                    subtitle='Subtitle'
-                                    text='Text'
-                                    buttons={[{
-                                        text:'button1',
-                                        icon:'share'
+                                        icon:'share',
+                                        click:() => (
+                                            new Promise((res, _rej)=>( setTimeout(res, 60000)))
+                                        )
                                     }, {
                                         text:'button2',
                                         icon:'share'
@@ -263,24 +212,52 @@ export default () => {
                                         icon:'share'
                                     }]} />
                             </div>
-                        </div>
 
-
-                        <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'>Card with icon</h1>
                             <div className='col-12 col-sm-6 col-md-4'>
                                 <CardWithIcon 
-                                    title='Card w/ icon'
+                                    title='Card-with-icon'
                                     subtitle='[Subtitle]'
                                     text='[Text]'
                                     icon='open_in_browser' />
                             </div>
+
                         </div>
                         
                         <hr/>
 
+                        <div className="row">
+                            <h1 className='col-12 fs-1 bg-dark'>Search-And-Select-And-Sort-Panel</h1>
+                            <SearchAndSelectAndSortPanel
+                                    // title='Search some entities'
+                                    // defaultItemIcon='queue_music'
+                                    // allowNew={false}
+                                    // pathToItemTitle='someDisplayKey'
+                                    renderItem={(item, _isSelected) => (<>
+                                        {item['someDisplayKey']}
+                                    </>)}
+                                    // mandatory
+                                    onSelectedItemsChange={(selectedItems:any[]) => (console.log(selectedItems))}
+                                    onItemsQuery={(text: string, _pageNumber: number): any =>(
+                                                Promise.resolve({
+                                                    content: [{
+                                                        someDisplayKey: `item ${!!text? `for ${text}`:''}`,
+                                                        somekey: 'somevalue'
+                                                    }, {
+                                                        someDisplayKey: `item#2 ${!!text? `for ${text}`:''}`,
+                                                        somekey: 'somevalue2'
+                                                    }, {
+                                                        someDisplayKey: `item#3 ${!!text? `for ${text}`:''}`,
+                                                        somekey: 'somevalue3'
+                                                    }],
+                                                    first: false,
+                                                    last: false,
+                                                    size: 2
+                                                } as any) as any)}
+                            />
+                        </div>
 
-                        <div className='row'>
+
+                        {/* <div className='row'>
                             <h1 className='col-12 fs-1 bg-dark'>Search-And-Select-List</h1>
 
                             <div className='col-12'>
@@ -397,7 +374,7 @@ export default () => {
                                         }}/>
                             </div>
 
-                        </div>
+                        </div> */}
                         
                         <hr/>
 
@@ -456,12 +433,7 @@ export default () => {
                         <div className='row'>
                             <h1 className='col-12 fs-1 bg-dark'>Collapsible List</h1>
 
-                            <div className='col-12 col-sm-4 p-3'>
-                                <CollapsibleList
-                                    children={CollapsibleListChild}
-                                />
-                            </div>
-                            <div className='col-12 col-sm-8 p-3'>
+                            <div className='col-12 col-sm-4 p-3 mx-auto'>
                                 <CollapsibleList
                                     children={CollapsibleListChild}
                                 />
