@@ -3,7 +3,7 @@
     .buttons-list {
         right: 0px;
         bottom: 10px;
-        position: absolute;
+        position: relative;
         .btn-spinner {
             position: relative;
             vertical-align: middle;
@@ -21,13 +21,21 @@
         color: white;
         border: 0px;
         background-color: #fff;
+        background-position: center;
+        background-size: contain;
+        .card-subtitle {
+            font-weight: 600;
+        }
     }
     .card:focus, .card:hover {
         border: 1px solid;
     }
 
     .card-featured__body {
-        background-position: center top;
+        .card-title, .card-subtitle, .card-text {
+            text-wrap: auto;
+            width: fit-content;
+        }
     }
 
     .card-featured__inner-card {

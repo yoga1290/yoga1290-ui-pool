@@ -17,6 +17,7 @@ const PagingButtons: React.FC<PagingButtonsProps> = ({
     onPrevious,
     onNext,
 }) => (
+    (hasNext || hasPrevious)?
     <>
         {/* <!-- Pagination Buttons --> */}
         <div className="browser-nav__arrows d-flex align-items-center">
@@ -64,7 +65,7 @@ const PagingButtons: React.FC<PagingButtonsProps> = ({
                 </span>
             </button>
         </div>
-    </>
+    </>: <></>
 );
 
 interface SearchBarProps {
@@ -149,7 +150,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 <span
                     className="browser-nav__icon browser-nav__icon--sm browser-nav__icon--clickable material-symbols-outlined align-middle"
                     onClick={() => ( setIsHorizontalView(!!!isHorizontalView) )}>
-                    {!!isHorizontalView? 'view_agenda':'view_column_2'}
+                    {!!isHorizontalView? 'height':'arrow_range'}
                 </span>
             </> : <></>}
             

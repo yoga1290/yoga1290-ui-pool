@@ -3,7 +3,7 @@
     .buttons-list {
         right: 0px;
         bottom: 10px;
-        position: absolute;
+        position: relative;
 
         .btn-spinner {
             position: relative;
@@ -21,6 +21,10 @@
     .card {
         color: white;
         border: 0px;
+
+        .card-subtitle {
+            font-weight: 600;
+        }
     }
     .card:focus {
         border: 1px solid;

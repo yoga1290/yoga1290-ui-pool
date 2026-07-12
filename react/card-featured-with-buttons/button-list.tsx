@@ -66,7 +66,7 @@ return <div className='col-12 d-print-none'>
                                 }
 
                                 <div className="btn-spinner">  
-                                    {!!spinners[idx]? 
+                                    {!!spinners[idx+1]? 
                                         <div
                                             className="card__menu-spinner spinner-border text-dark"
                                             role="status">
