@@ -15,7 +15,12 @@ export default ( {content, show, onClose, hideBackgroud }: ModalProp) => {
     const [visible, _setVisible] = useState<boolean>(show);
     const setVisible = (flag: boolean) => {
         if(!!onClose && !!!flag) {
+            if (!!hideBackgroud) {
+                document.body.classList.remove('modal-page__blur');
+            }
             onClose();
+        } else if (!!hideBackgroud) {
+            document.body.classList.add('modal-page__blur');
         }
         _setVisible(flag);
     };
@@ -23,10 +28,6 @@ export default ( {content, show, onClose, hideBackgroud }: ModalProp) => {
 
     return (
     <div className={`modal-page ${!!visible? '':'d-none'}`}>
-
-        {!!hideBackgroud && 
-            <div className='modal-page__background animate__animated animate__fadeIn'></div>
-        }
         
         <div className='modal-page__modal row'>
             
