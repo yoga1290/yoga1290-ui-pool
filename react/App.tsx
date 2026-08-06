@@ -14,6 +14,7 @@ import CollapsibleList from './collapsible-list';
 import './App.scss';
 import PanelFeatured from './panel-featured';
 import SearchAndSelectAndSortPanel from './search-and-select-and-sort-panel';
+import Login from './login';
 
 let headerProps: HeaderProp = {
     brand: 'yoga1290-ui-pool',
@@ -104,6 +105,7 @@ const CollapsibleListChild = [<CardFeaturedWithButtons
 export default () => {
 
     const [modalState, setModalState] = useState<boolean>(false);
+    const [loginModalState, setLoginModalState] = useState<boolean>(false);
 
   return <div>            
             <HashRouter>
@@ -196,7 +198,7 @@ export default () => {
                                                 }, {
                                                     text:'button2',
                                                     icon:'share'
-                                                }, , {
+                                                }, {
                                                     text:'button3',
                                                     icon:'share'
                                                 }]} />
@@ -342,6 +344,7 @@ export default () => {
                                 <Modal 
                                     show={modalState}
                                     onClose={() => ( setModalState(false) ) }
+                                    hideBackgroud={true}
                                     content={<>
                                         <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
                                             <CardFeaturedWithButtons 
@@ -349,6 +352,29 @@ export default () => {
                                                 subtitle=''
                                                 text='Close button on right'
                                                 icon='open_in_browser' />
+                                        </div>
+                                    </>}
+                                />
+                            </div>
+
+                        </div>
+
+                        <hr />
+
+                        <div className='row'>
+                            <h1 className='col-12 fs-1 bg-dark'>Login</h1>
+
+                            <div className='col-12 px-0 mx-0'>
+                                <button className='form-control btn-primary'
+                                        onClick={ () => (setLoginModalState(true))}>Open Modal</button>
+                                <Modal 
+                                    show={loginModalState}
+                                    onClose={() => ( setLoginModalState(false) ) }
+                                    hideBackgroud={true}
+                                    content={<>
+                                        <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
+                                            <Login
+                                                />
                                         </div>
                                     </>}
                                 />
@@ -372,9 +398,7 @@ export default () => {
                         
                         
                         <hr/>
-                        
-                        
-
+                                                
 
                     </div>
                 </div>
