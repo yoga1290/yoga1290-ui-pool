@@ -30,7 +30,7 @@ export default ({ buttons }: ButtonListProps) => {
     const showSpinnerIfPromise = (callback: any, idx: number) => {
         if (isPromise(callback)) {
             let call = callback();
-            const hasPromise = typeof call.then === 'function';
+            const hasPromise = !!call && !!call.then && typeof call.then === 'function';
             if (hasPromise) {
                 showSpinnerAt(idx);
                 const closeSpinner = () => (hideSpinnerAt(idx));
