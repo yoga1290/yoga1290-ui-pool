@@ -1,0 +1,68 @@
+// =========================================================
+// Design tokens (ported 1:1 from the original Tailwind config)
+// =========================================================
+
+// Color roles -----------------------------------------------------
+$surface:                 #FFFFFF;
+$surface-container-lowest: #FFFFFF;
+$surface-container-low:   #F4F5F7;
+$on-surface:               #172B4D;
+$on-surface-variant:       #44546F;
+$outline:                  #7A869A;
+$outline-variant:          #DFE1E6;
+
+$primary:                  #0052CC;
+$on-primary:                #FFFFFF;
+$primary-fixed:            rgba(0, 82, 204, 0.25); // used for focus ring
+
+// Spacing scale (maps to the p-xs / p-sm / p-md / p-lg / p-xl tokens) ---
+$space-xs:  0.5rem;
+$space-sm:  0.75rem;
+$space-md:  1rem;
+$space-lg:  1.5rem;
+$space-xl:  2rem;
+$space-margin-mobile: 1rem;
+
+// Radius ------------------------------------------------------------
+$radius-lg: 0.5rem;
+
+// Typography ----------------------------------------------------------
+$font-headline-xl-mobile: 1.5rem;
+$font-headline-xl:        1.75rem;
+$font-body-sm:             0.875rem;
+$font-label-md:             0.9375rem;
+$font-label-sm:             0.8125rem;
+
+// Elevation / shadows (ported from the arbitrary Tailwind box-shadow values) --
+$shadow-card:
+  0px 12px 24px -4px rgba(9, 30, 66, 0.3),
+  0px 0px 1px rgba(9, 30, 66, 0.3);
+
+$shadow-btn-resting:
+  0px 1px 3px rgba(9, 30, 66, 0.13),
+  0px 0px 1px rgba(9, 30, 66, 0.31);
+
+$shadow-btn-hover:
+  0px 4px 8px -2px rgba(9, 30, 66, 0.25),
+  0px 0px 1px rgba(9, 30, 66, 0.31);
+
+// -------------------------------------------------------------------
+// Bootstrap variable overrides — these must be set *before* importing
+// Bootstrap so the framework itself picks up the same design tokens.
+// -------------------------------------------------------------------
+$primary:      $primary !default;
+$body-color:   $on-surface;
+$body-bg:      $surface-container-low;
+$border-color: $outline-variant;
+$border-radius: $radius-lg;
+$border-radius-lg: $radius-lg;
+
+$input-border-color:      $outline-variant;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow:  0 0 0 0.2rem $primary-fixed;
+$input-placeholder-color: $outline;
+
+$link-color: $primary;
+// $link-hover-color: darken($primary, 10%); //TODO
+
+$font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

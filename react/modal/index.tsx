@@ -27,13 +27,17 @@ export default ( {content, show, onClose, hideBackgroud }: ModalProp) => {
     useEffect(()=> (setVisible(show)), [show]);
 
     return (
-    <div className={`modal-page ${!!visible? '':'d-none'}`}>
+    <div className={`modal-page ${!!visible? 'active':'d-none'}`}>
+
+        {!!hideBackgroud && 
+            <div className='modal-page__background'></div>
+        }
         
         <div className='modal-page__modal row'>
             
             <div className='modal-page__modal-content row justify-content-center'>
 
-                <div className='card animate__animated animate__fadeInUp animate__delay-1s'>
+                <div className='card animate__animated animate__fadeInUp'>
                     <div className='card-body'>
 
                         <button type="button"
