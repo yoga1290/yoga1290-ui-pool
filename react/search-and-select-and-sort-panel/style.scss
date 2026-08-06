@@ -151,14 +151,16 @@
 
 
     .search-and-select-and-sort-panel__list {
+        display: flex;
+
         &__list--vertical {
             max-height: 29rem;
             overflow-y: auto;
             overflow-x: hidden;
+            flex-wrap: wrap;
         }
 
         &__list--horizontal {
-            display: flex;
             flex-wrap: nowrap;
             overflow-x: auto;
             overflow-y: hidden;
