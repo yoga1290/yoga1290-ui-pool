@@ -5,7 +5,6 @@ import Header, {HeaderProp} from "./header";
 import CardWithButtons /*, {CardProps}*/ from "./card-with-buttons";
 
 import CardWithIcon /*, {CardProps}*/ from "./card-with-icon";
-import CardFeatured /*, {CardProps}*/ from "./card-featured";
 import CardFeaturedWithButtons /*, {CardProps}*/ from "./card-featured-with-buttons";
 import CardFeaturedWithButtonsCarousal from './card-featured-with-buttons-carousal';
 import Modal from './modal';
@@ -15,6 +14,7 @@ import './App.scss';
 import PanelFeatured from './panel-featured';
 import SearchAndSelectAndSortPanel from './search-and-select-and-sort-panel';
 import Login from './login';
+import CardFeaturedAnimated from './card-featured-animated';
 
 let headerProps: HeaderProp = {
     brand: 'yoga1290-ui-pool',
@@ -123,19 +123,18 @@ export default () => {
                         </Routes>
 
                         <div className='row'>
-                            <h1 className='col-12 fs-1 bg-dark'> &#60; Header &#62; </h1>
-                            <div className='col-12'>
-                                <Header  brand={headerProps.brand}
-                                    items={headerProps.items} />
-                            </div>
-                        </div>
-
-                        <div className='row'>
                             <h1 className='col-12 fs-1 bg-dark'> &#60; CardFeatured &#62; </h1>                            
-                            <div className='col-12'>
-                                <CardFeatured 
-                                    title={`What's this?`}
-                                    text={<>This GitHub page/repo acts as NPM dependency to provide a pool of UI components that might possibily be reusable and resolve boilerplate.
+                            <div className='col-12 p-0 m-0'>
+                                <CardFeaturedAnimated
+                                    heading={`What's that?`}
+                                    title= {<>
+                                        <div className='align-middle d-inline'>
+                                            <span className="material-symbols-outlined align-middle my-2">info</span>
+                                            What's that?
+                                        </div>
+                                    </>} 
+                                    text={<>
+                                    This GitHub page/repo acts as NPM dependency to provide a pool of UI components that might possibily be reusable and resolve boilerplate.
                                         Currently it only has React.js components
                                     </>}
                                     buttonText='Jump to repo'
